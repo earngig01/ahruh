@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#08080a">
-<meta name="description" content="AHRUH — Discover novels and experience every story your way.">
+<meta name="description" content="AHRUH — Stories beyond the page.">
 <title>AHRUH | Stories Beyond the Page</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,619 +14,303 @@
 
 <style>
 :root {
-  --bg: #08080a;
-  --panel: #151519;
-  --panel-light: #202026;
-  --red: #ff1838;
-  --red-dark: #c90025;
-  --white: #ffffff;
-  --muted: #aaaab3;
-  --line: #303037;
+  --bg:#08080a;
+  --panel:#17171c;
+  --red:#ff1738;
+  --red2:#d90028;
+  --white:#fff;
+  --muted:#aaaab3;
+  --line:#303037;
 }
-
-* { box-sizing: border-box; }
-
-html { scroll-behavior: smooth; }
-
-body {
-  margin: 0;
-  background: var(--bg);
-  color: var(--white);
-  font-family: "Space Grotesk", Arial, sans-serif;
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--bg);color:var(--white);
+  font-family:"Space Grotesk",Arial,sans-serif;
 }
-
-button, input { font: inherit; }
-button { cursor: pointer; }
+button,input{font:inherit}
+button{cursor:pointer}
 
 /* HEADER */
 
-header {
-  height: 78px;
-  padding: 0 5%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  background: #0b0b0e;
-  border-bottom: 1px solid var(--line);
-  position: sticky;
-  top: 0;
-  z-index: 30;
+header{
+  height:76px;padding:0 5%;display:flex;align-items:center;
+  justify-content:space-between;gap:20px;background:#0b0b0e;
+  border-bottom:1px solid var(--line);position:sticky;top:0;z-index:30;
 }
-
-.logo {
-  color: white;
-  font-size: 29px;
-  font-weight: 700;
-  letter-spacing: 5px;
-  text-decoration: none;
+.logo{
+  color:white;text-decoration:none;font-size:28px;
+  font-weight:700;letter-spacing:5px;
 }
-
-.logo span { color: var(--red); }
-
-nav {
-  display: flex;
-  align-items: center;
-  gap: 27px;
+.logo span{color:var(--red)}
+nav{display:flex;align-items:center;gap:28px}
+nav a{color:#ddd;text-decoration:none;font-size:14px}
+nav a:hover{color:var(--red)}
+.header-actions{display:flex;align-items:center;gap:12px}
+.icon-button{
+  width:40px;height:40px;border:0;border-radius:50%;
+  display:grid;place-items:center;background:transparent;color:white;
 }
-
-nav a {
-  color: #d6d6dc;
-  font-size: 14px;
-  font-weight: 500;
-  text-decoration: none;
+.icon-button:hover{background:#ffffff15}
+.icon-button svg{
+  width:23px;height:23px;fill:none;stroke:currentColor;
+  stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;
 }
-
-nav a:hover { color: var(--red); }
-
-.header-actions {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+.wallet{
+  padding:10px 12px;border:1px solid #45454e;
+  border-radius:8px;font-size:12px;white-space:nowrap;
 }
-
-.icon-button {
-  width: 40px;
-  height: 40px;
-  display: grid;
-  place-items: center;
-  border: 0;
-  border-radius: 50%;
-  background: transparent;
-  color: white;
-}
-
-.icon-button:hover { background: #ffffff15; }
-
-.icon-button svg {
-  width: 23px;
-  height: 23px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.9;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.wallet {
-  color: white;
-  background: #17171c;
-  border: 1px solid #45454e;
-  border-radius: 8px;
-  padding: 10px 13px;
-  font-size: 12px;
-  white-space: nowrap;
-}
-
-.wallet strong { color: #ffd166; }
-
-.dashboard-link {
-  background: var(--red);
-  color: white;
-  border: 0;
-  border-radius: 7px;
-  padding: 11px 16px;
-  font-weight: 700;
-  font-size: 13px;
-}
-
-.dashboard-link:hover,
-.primary:hover { background: #ff4058; }
-
-.menu-button { display: none; }
+.wallet strong{color:#ffd166}
+.menu-button{display:none}
 
 /* SEARCH */
 
-.search-panel {
-  display: none;
-  padding: 14px 5%;
-  background: #151519;
-  border-bottom: 1px solid var(--line);
+.search-panel{
+  display:none;padding:14px 5%;background:#151519;
+  border-bottom:1px solid var(--line);
+}
+.search-panel.open{display:block}
+.search-panel input{
+  width:100%;padding:13px;color:white;background:#09090c;
+  border:1px solid #45454e;border-radius:7px;
 }
 
-.search-panel.open { display: block; }
+/* HOMEPAGE BILLBOARD */
 
-.search-panel input {
-  width: 100%;
-  padding: 13px 15px;
-  color: white;
-  background: #09090c;
-  border: 1px solid #42424b;
-  border-radius: 7px;
-  outline: none;
+.billboard{
+  position:relative;min-height:490px;overflow:hidden;
+  background:#180910;
 }
+.slides{
+  display:flex;width:100%;height:490px;
+  transition:transform .65s ease;
+}
+.slide{
+  min-width:100%;height:100%;position:relative;
+  display:flex;align-items:center;overflow:hidden;
+  padding:55px 8%;
+  background:linear-gradient(90deg,#08080a 5%,#08080acc 48%,#08080a30);
+}
+.slide::before{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(ellipse at 78% 40%,#ff17385c,transparent 48%);
+  pointer-events:none;
+}
+.slide-image{
+  position:absolute;right:8%;top:7%;height:86%;width:34%;
+  object-fit:cover;object-position:center;
+  border-radius:9px;opacity:.78;
+  mask-image:linear-gradient(90deg,transparent,#000 20%);
+}
+.slide-content{
+  position:relative;z-index:2;max-width:590px;
+}
+.slide-tag{
+  display:inline-block;background:var(--red);color:white;
+  padding:7px 12px;border-radius:4px;
+  font-size:11px;font-weight:700;letter-spacing:2px;
+  text-transform:uppercase;
+}
+.slide h1{
+  font-size:clamp(40px,6vw,76px);line-height:1.02;
+  letter-spacing:-3px;margin:20px 0;
+}
+.slide p{
+  color:#e0d8dc;max-width:470px;line-height:1.8;font-size:15px;
+}
+.primary{
+  display:inline-block;background:var(--red);color:white;
+  border:0;border-radius:7px;padding:14px 22px;
+  font-weight:700;text-decoration:none;
+  box-shadow:0 5px 25px #ff17383b;
+}
+.primary:hover{background:#ff405b}
+.slide-button{margin-top:22px}
+.slide-dots{
+  position:absolute;z-index:5;bottom:20px;left:0;right:0;
+  display:flex;justify-content:center;gap:9px;
+}
+.dot{
+  width:9px;height:9px;padding:0;border:0;border-radius:20px;
+  background:#777;transition:all .2s;
+}
+.dot.active{width:28px;background:var(--red)}
+.slide-arrow{
+  position:absolute;z-index:5;top:50%;transform:translateY(-50%);
+  width:42px;height:42px;border-radius:50%;
+  color:white;background:#08080a99;border:1px solid #ffffff44;
+  font-size:22px;
+}
+.slide-arrow.prev{left:18px}
+.slide-arrow.next{right:18px}
 
-/* HERO */
+/* EMPTY BILLBOARD */
 
-.hero {
-  min-height: 570px;
-  padding: 75px 8%;
-  display: flex;
-  align-items: center;
-  position: relative;
-  overflow: hidden;
+.billboard-empty{
+  height:490px;display:flex;align-items:center;justify-content:center;
+  text-align:center;padding:30px;
   background:
-    radial-gradient(ellipse at 78% 43%, #ff18385c, transparent 43%),
-    radial-gradient(ellipse at 60% 100%, #8d001f35, transparent 50%),
-    linear-gradient(110deg, #09090c 10%, #17090e 70%, #270711);
+    radial-gradient(ellipse at 75% 45%,#ff17382c,transparent 45%),
+    linear-gradient(110deg,#09090c,#210811);
 }
-
-.hero::before {
-  content: "";
-  position: absolute;
-  width: 430px;
-  height: 430px;
-  right: 8%;
-  top: 45px;
-  border: 1px solid #ff18383b;
-  border-radius: 50%;
-  box-shadow:
-    0 0 70px #ff183822,
-    inset 0 0 70px #ff183815;
+.billboard-empty h1{
+  font-size:clamp(36px,6vw,65px);margin:14px 0;
 }
+.billboard-empty p{color:#c5bdc2;line-height:1.7}
 
-.hero-content {
-  max-width: 650px;
-  position: relative;
-  z-index: 2;
+/* MAIN CONTENT */
+
+main{padding:0 5% 75px}
+.section{padding-top:46px}
+.section-heading{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:20px;
 }
-
-.eyebrow {
-  color: #ff526b;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 4px;
-  text-transform: uppercase;
+.section-heading h2{font-size:23px;margin:0}
+.section-heading span{color:#ff647a;font-size:12px}
+.shelf{
+  display:flex;gap:17px;overflow-x:auto;
+  min-height:145px;padding:3px 2px 15px;
+  scrollbar-color:#555 transparent;
 }
-
-.hero h1 {
-  font-size: clamp(48px, 7vw, 84px);
-  font-weight: 700;
-  letter-spacing: -4px;
-  line-height: .99;
-  margin: 22px 0;
+.empty-shelf{
+  min-width:100%;min-height:135px;border:1px dashed #45454e;
+  border-radius:9px;display:flex;align-items:center;
+  justify-content:center;text-align:center;padding:20px;
+  color:#85858e;font-size:14px;
 }
-
-.hero h1 span { color: var(--red); }
-
-.hero p {
-  max-width: 520px;
-  color: #d0cbd0;
-  font-size: 16px;
-  line-height: 1.8;
+.novel-card{flex:0 0 175px;cursor:pointer}
+.novel-card img{
+  width:100%;aspect-ratio:3/4;object-fit:cover;
+  border-radius:8px;background:#1c1c22;
 }
-
-.hero-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 13px;
-  margin-top: 30px;
-}
-
-.button {
-  display: inline-block;
-  padding: 14px 22px;
-  border: 0;
-  border-radius: 7px;
-  font-weight: 700;
-  text-decoration: none;
-}
-
-.primary {
-  color: white;
-  background: var(--red);
-  box-shadow: 0 6px 25px #ff18383d;
-}
-
-.secondary {
-  color: white;
-  background: #ffffff0c;
-  border: 1px solid #ffffff45;
-}
-
-/* HOMEPAGE */
-
-main { padding: 0 5% 75px; }
-
-.section { padding-top: 48px; }
-
-.section-heading {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 20px;
-}
-
-.section-heading h2 {
-  margin: 0;
-  font-size: 23px;
-  font-weight: 700;
-}
-
-.section-heading a {
-  color: #ff6177;
-  text-decoration: none;
-  font-size: 13px;
-}
-
-.shelf {
-  display: flex;
-  gap: 17px;
-  min-height: 155px;
-  overflow-x: auto;
-  padding: 3px 2px 16px;
-  scrollbar-color: #55555e transparent;
-}
-
-.empty-shelf {
-  width: 100%;
-  min-height: 140px;
-  border: 1px dashed #45454e;
-  border-radius: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-  text-align: center;
-  color: #888892;
-  font-size: 14px;
-}
-
-.novel-card {
-  flex: 0 0 175px;
-  cursor: pointer;
-}
-
-.novel-card img {
-  width: 100%;
-  aspect-ratio: 3 / 4;
-  object-fit: cover;
-  border-radius: 9px;
-  background: #1c1c22;
-  border: 1px solid #ffffff20;
-}
-
-.novel-card h3 {
-  margin: 10px 0 4px;
-  font-size: 14px;
-}
-
-.novel-card p {
-  color: var(--muted);
-  font-size: 12px;
-  margin: 0;
-}
+.novel-card h3{font-size:14px;margin:10px 0 4px}
+.novel-card p{font-size:12px;color:var(--muted);margin:0}
 
 /* WRITERS */
 
-.writers {
-  margin-top: 60px;
-  padding: 42px;
-  border: 1px solid #ff18383b;
-  border-radius: 12px;
-  background:
-    radial-gradient(ellipse at 90% 20%, #ff18382c, transparent 50%),
-    linear-gradient(110deg, #260b13, #151216);
+.writers{
+  margin-top:55px;padding:40px;border-radius:11px;
+  border:1px solid #ff17384a;
+  background:radial-gradient(ellipse at 90% 20%,#ff17382b,transparent 50%),
+  linear-gradient(110deg,#290a14,#151216);
 }
-
-.writers h2 {
-  font-size: 29px;
-  margin: 12px 0;
+.eyebrow{
+  color:#ff6278;font-size:11px;font-weight:700;
+  letter-spacing:4px;text-transform:uppercase;
 }
+.writers h2{font-size:29px;margin:13px 0}
+.writers p{color:#d0c8ce;line-height:1.8;max-width:550px}
 
-.writers p {
-  max-width: 560px;
-  color: #d1cbd0;
-  line-height: 1.8;
+/* ADMIN PAGE */
+
+.admin-page{display:none;min-height:85vh;padding:40px 5% 80px}
+.admin-page.active{display:block}
+.admin-top{
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:15px;
 }
-
-/* BILLBOARD ON HOMEPAGE */
-
-.billboard {
-  display: flex;
-  gap: 16px;
-  overflow-x: auto;
-  padding: 5px 2px 15px;
+.admin-page h1{font-size:36px;margin:12px 0}
+.admin-panel{
+  max-width:900px;margin-top:28px;padding:28px;
+  background:var(--panel);border:1px solid var(--line);border-radius:12px;
 }
-
-.billboard-card {
-  flex: 0 0 260px;
-  min-height: 155px;
-  display: flex;
-  gap: 13px;
-  align-items: center;
-  padding: 13px;
-  background: linear-gradient(135deg, #251018, #17171c);
-  border: 1px solid #ff18383b;
-  border-radius: 10px;
-  cursor: pointer;
+.admin-panel h2{font-size:21px}
+.admin-panel p{color:var(--muted);font-size:13px;line-height:1.7}
+.form-group{margin:20px 0}
+.form-group label{
+  display:block;font-size:13px;font-weight:600;margin-bottom:9px;
 }
-
-.billboard-card img {
-  width: 83px;
-  height: 112px;
-  object-fit: cover;
-  border-radius: 6px;
+.form-group input,.form-group textarea{
+  width:100%;padding:13px;background:#09090c;
+  color:white;border:1px solid #45454e;border-radius:7px;
 }
-
-.billboard-card h3 { font-size: 15px; }
-.billboard-card p { font-size: 12px; color: var(--muted); }
-
-/* DASHBOARD */
-
-.dashboard {
-  display: none;
-  min-height: 85vh;
-  padding: 42px 5% 80px;
+.form-group textarea{min-height:90px;resize:vertical}
+.form-group input:focus,.form-group textarea:focus{
+  outline:1px solid var(--red);border-color:var(--red);
 }
-
-.dashboard.active { display: block; }
-
-.dashboard-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 20px;
-  flex-wrap: wrap;
+.admin-count{color:#ff647a!important;font-weight:700}
+.admin-list{display:flex;gap:14px;overflow-x:auto;padding:15px 0}
+.admin-item{
+  flex:0 0 155px;background:#222228;padding:10px;border-radius:8px;
 }
-
-.dashboard h1 {
-  font-size: 38px;
-  margin: 10px 0;
+.admin-item img{
+  width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:6px;
 }
-
-.dashboard-intro {
-  color: var(--muted);
-  line-height: 1.7;
+.admin-item p{overflow-wrap:anywhere}
+.remove-button{
+  background:transparent;color:#ff778a;border:1px solid #9b263b;
+  border-radius:5px;padding:7px 10px;font-size:11px;
 }
-
-.admin-panel {
-  max-width: 950px;
-  margin-top: 30px;
-  padding: 28px;
-  background: var(--panel);
-  border: 1px solid var(--line);
-  border-radius: 12px;
-}
-
-.admin-panel h2 {
-  font-size: 21px;
-  margin-top: 0;
-}
-
-.form-group { margin: 21px 0; }
-
-.form-group label {
-  display: block;
-  font-size: 13px;
-  font-weight: 600;
-  margin-bottom: 9px;
-}
-
-.form-group input {
-  width: 100%;
-  padding: 14px;
-  color: white;
-  background: #09090c;
-  border: 1px solid #44444d;
-  border-radius: 7px;
-}
-
-.form-group input:focus {
-  outline: 1px solid var(--red);
-  border-color: var(--red);
-}
-
-.form-group input[type="file"] { padding: 11px; }
-
-.featured-list {
-  display: flex;
-  gap: 15px;
-  overflow-x: auto;
-  padding: 18px 0;
-}
-
-.featured-item {
-  flex: 0 0 155px;
-  padding: 10px;
-  background: #202026;
-  border-radius: 9px;
-}
-
-.featured-item img {
-  width: 100%;
-  aspect-ratio: 3/4;
-  object-fit: cover;
-  border-radius: 6px;
-}
-
-.featured-item p {
-  font-size: 12px;
-  overflow-wrap: anywhere;
-}
-
-.remove-button {
-  background: transparent;
-  color: #ff7185;
-  border: 1px solid #9b263b;
-  border-radius: 5px;
-  padding: 7px 10px;
-  font-size: 11px;
-}
-
-.notice {
-  color: #9999a3;
-  font-size: 12px;
-  line-height: 1.7;
-}
+.notice{font-size:12px;color:#999;line-height:1.7}
 
 /* NOVEL DETAILS */
 
-.modal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  z-index: 60;
-  background: #000d;
-  align-items: center;
-  justify-content: center;
-  padding: 18px;
+.modal{
+  display:none;position:fixed;inset:0;z-index:60;
+  background:#000d;align-items:center;justify-content:center;padding:18px;
 }
-
-.modal.open { display: flex; }
-
-.dialog {
-  width: 100%;
-  max-width: 520px;
-  padding: 30px;
-  position: relative;
-  background: #18181e;
-  border: 1px solid #ff18384a;
-  border-radius: 13px;
-  box-shadow: 0 20px 90px #000;
+.modal.open{display:flex}
+.dialog{
+  width:100%;max-width:520px;padding:30px;position:relative;
+  background:#19191f;border:1px solid #ff17384a;border-radius:12px;
 }
-
-.close {
-  position: absolute;
-  top: 12px;
-  right: 16px;
-  background: transparent;
-  border: 0;
-  color: white;
-  font-size: 27px;
+.close{
+  position:absolute;right:15px;top:12px;
+  background:transparent;border:0;color:white;font-size:27px;
 }
-
-.dialog h2 {
-  font-size: 29px;
-  margin: 13px 0 8px;
+.dialog h2{font-size:29px;margin:14px 0 8px}
+.dialog p{color:#c3c0c8;line-height:1.7}
+.choices{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-top:22px}
+.choice{
+  padding:20px;text-align:left;color:white;background:#25252c;
+  border:1px solid #45454e;border-radius:8px;
 }
+.choice:hover{border-color:var(--red);background:#35101a}
+.choice strong{display:block;font-size:16px;margin-bottom:8px}
+.choice span{font-size:12px;color:#aaa;line-height:1.6}
 
-.dialog p {
-  color: #c0bdc5;
-  line-height: 1.7;
-}
+/* FOOTER */
 
-.choices {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 13px;
-  margin-top: 25px;
-}
-
-.choice {
-  padding: 20px;
-  background: #24242b;
-  border: 1px solid #45454e;
-  border-radius: 9px;
-  color: white;
-  text-align: left;
-}
-
-.choice:hover {
-  border-color: var(--red);
-  background: #35101a;
-}
-
-.choice strong {
-  display: block;
-  font-size: 17px;
-  margin-bottom: 8px;
-}
-
-.choice span {
-  color: #aaaab3;
-  font-size: 12px;
-  line-height: 1.5;
-}
-
-footer {
-  padding: 25px 5%;
-  display: flex;
-  justify-content: space-between;
-  gap: 15px;
-  border-top: 1px solid var(--line);
-  color: #888;
-  font-size: 12px;
+footer{
+  padding:25px 5%;border-top:1px solid var(--line);
+  color:#85858c;font-size:12px;
+  display:flex;justify-content:space-between;gap:15px;
 }
 
 /* MOBILE */
 
-@media(max-width: 850px) {
-  header { padding: 0 4%; }
-
-  nav {
-    display: none;
-    position: absolute;
-    top: 77px;
-    left: 0;
-    right: 0;
-    padding: 22px;
-    background: #111115;
-    border-bottom: 1px solid var(--line);
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 22px;
+@media(max-width:850px){
+  header{padding:0 4%}
+  nav{
+    display:none;position:absolute;top:76px;left:0;right:0;
+    padding:22px;background:#111115;border-bottom:1px solid var(--line);
+    flex-direction:column;align-items:flex-start;gap:22px;
   }
-
-  nav.open { display: flex; }
-
-  .menu-button { display: grid; }
-
-  .dashboard-link { padding: 10px 12px; }
-
-  .hero { min-height: 490px; padding: 60px 7%; }
-
-  .hero h1 { letter-spacing: -2px; }
-
-  .novel-card { flex-basis: 42vw; }
-
-  .writers { padding: 27px; }
-
-  footer { flex-direction: column; }
+  nav.open{display:flex}
+  .menu-button{display:grid}
+  .billboard,.slides,.billboard-empty{min-height:460px;height:460px}
+  .slide{padding:45px 8%}
+  .slide-image{right:3%;width:42%;opacity:.35}
+  .slide-content{max-width:90%}
+  .novel-card{flex-basis:42vw}
+  .writers{padding:27px}
 }
-
-@media(max-width: 480px) {
-  .logo { font-size: 23px; letter-spacing: 3px; }
-
-  header { gap: 7px; }
-
-  .header-actions { gap: 2px; }
-
-  .icon-button { width: 34px; height: 36px; }
-
-  .wallet { display: none; }
-
-  .dashboard-link { font-size: 11px; padding: 9px; }
-
-  .hero h1 { font-size: 48px; }
-
-  .hero p { font-size: 14px; }
-
-  .section-heading h2 { font-size: 19px; }
-
-  .choices { grid-template-columns: 1fr; }
-
-  .admin-panel { padding: 19px; }
+@media(max-width:480px){
+  .logo{font-size:23px;letter-spacing:3px}
+  header{gap:5px}
+  .header-actions{gap:2px}
+  .icon-button{width:34px}
+  .wallet{display:none}
+  .slide h1{font-size:44px;letter-spacing:-2px}
+  .slide p{font-size:13px;max-width:300px}
+  .slide-image{width:50%;right:-10%;opacity:.24}
+  .slide-arrow{width:34px;height:34px}
+  .slide-arrow.prev{left:7px}
+  .slide-arrow.next{right:7px}
+  .choices{grid-template-columns:1fr}
+  .admin-panel{padding:18px}
+  footer{flex-direction:column}
 }
 </style>
 </head>
@@ -634,22 +318,19 @@ footer {
 <body>
 
 <header>
-  <a class="logo" href="#" id="logoHome">AHR<span>U</span>H</a>
+  <a href="#" class="logo" id="homeLogo">AHR<span>U</span>H</a>
 
-  <button class="icon-button menu-button" id="menuButton" aria-label="Open menu">
-    <svg viewBox="0 0 24 24">
-      <path d="M4 6h16M4 12h16M4 18h16"/>
-    </svg>
+  <button class="icon-button menu-button" id="menuButton" aria-label="Menu">
+    <svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
   </button>
 
   <nav id="navigation">
-    <a href="#home" data-page="home">Home</a>
-    <a href="#novels" data-page="novels">Novels</a>
-    <a href="#writers" data-page="writers">Writers’ Studio</a>
+    <a href="#home" data-home>Home</a>
+    <a href="#novels" data-home>Novels</a>
+    <a href="#writers" data-home>Writers' Studio</a>
   </nav>
 
   <div class="header-actions">
-
     <button class="icon-button" id="searchButton" aria-label="Search">
       <svg viewBox="0 0 24 24">
         <circle cx="10.8" cy="10.8" r="6.8"/>
@@ -672,59 +353,44 @@ footer {
     </button>
 
     <div class="wallet">◈ <strong>0</strong> coins</div>
-
-    <button class="dashboard-link" id="dashboardButton">
-      Dashboard
-    </button>
   </div>
 </header>
 
 <div class="search-panel" id="searchPanel">
-  <input id="searchInput" type="search" placeholder="Search novels...">
+  <input type="search" id="searchInput" placeholder="Search novels...">
 </div>
 
-<!-- HOME PAGE -->
+<!-- PUBLIC HOMEPAGE -->
 
 <div id="homePage">
 
-  <section class="hero" id="home">
-    <div class="hero-content">
-      <div class="eyebrow">Stories beyond the page</div>
+  <!-- BILLBOARD IS THE FIRST THING UNDER THE HEADER -->
 
-      <h1>Every story<br>has <span>another life.</span></h1>
-
-      <p>
-        Discover unforgettable novels. Read every word,
-        or step inside the story through cinematic performances
-        with character voices, emotion and sound.
-      </p>
-
-      <div class="hero-buttons">
-        <a href="#novels" class="button primary">Explore Novels</a>
-        <a href="#writers" class="button secondary">Writers’ Studio</a>
+  <section class="billboard" id="billboard">
+    <div class="billboard-empty" id="billboardEmpty">
+      <div>
+        <div class="eyebrow">Stories beyond the page</div>
+        <h1>Discover your<br>next favourite story.</h1>
+        <p>Featured novels and coming-soon releases will appear here.</p>
       </div>
     </div>
+
+    <div class="slides" id="slides" style="display:none"></div>
+
+    <button class="slide-arrow prev" id="previousSlide"
+      aria-label="Previous slide" style="display:none">‹</button>
+    <button class="slide-arrow next" id="nextSlide"
+      aria-label="Next slide" style="display:none">›</button>
+
+    <div class="slide-dots" id="slideDots"></div>
   </section>
 
   <main>
 
-    <!-- ADMIN-SELECTED BILLBOARD -->
-
-    <section class="section">
-      <div class="section-heading">
-        <h2>Featured on AHRUH</h2>
-      </div>
-
-      <div class="billboard" id="homeBillboard">
-        <div class="empty-shelf">
-          Featured novels selected from your Dashboard will appear here.
-        </div>
-      </div>
-    </section>
-
     <section class="section" id="novels">
       <div class="section-heading">
         <h2>Trending Novels</h2>
+        <span>EXPLORE</span>
       </div>
       <div class="shelf" id="trendingShelf">
         <div class="empty-shelf">Trending novels will appear here.</div>
@@ -763,109 +429,92 @@ footer {
       <h2>Have a story to tell?</h2>
       <p>
         Bring your imagination to AHRUH.
-        Writers’ Studio will be the home for authors
+        Writers' Studio will be the home for authors
         who want to prepare, submit and publish their work.
       </p>
-      <button class="button primary">Explore Writers’ Studio</button>
+      <button class="primary">Explore Writers' Studio</button>
     </section>
 
   </main>
 </div>
 
-<!-- DASHBOARD -->
+<!-- SEPARATE ADMIN PAGE: OPEN WITH ?admin=1 -->
 
-<section class="dashboard" id="dashboardPage">
-
-  <div class="dashboard-top">
+<section class="admin-page" id="adminPage">
+  <div class="admin-top">
     <div>
-      <div class="eyebrow">AHRUH Administration</div>
-      <h1>Dashboard</h1>
-      <p class="dashboard-intro">
-        Manage your homepage and featured novels.
+      <div class="eyebrow">AHRUH CONTENT MANAGEMENT</div>
+      <h1>Billboard Manager</h1>
+      <p class="notice">
+        Add, change or remove the novels displayed in the homepage billboard.
       </p>
     </div>
-
-    <button class="button secondary" id="backHome">
-      ← Back to Homepage
-    </button>
+    <button class="primary" id="returnHome">View Homepage</button>
   </div>
 
   <div class="admin-panel">
-    <h2>Homepage Billboard</h2>
+    <h2>Add a Billboard Slide</h2>
+    <p>Upload up to five featured novels or upcoming releases.</p>
 
-    <p class="dashboard-intro">
-      Select up to five novels to appear in the scrolling
-      featured section on the homepage.
-    </p>
-
-    <form id="uploadForm">
+    <form id="billboardForm">
 
       <div class="form-group">
-        <label for="novelTitle">Novel title</label>
-        <input id="novelTitle" type="text"
-          placeholder="Enter the novel title" required>
+        <label for="slideTitle">Novel title</label>
+        <input id="slideTitle" required placeholder="Enter novel title">
       </div>
 
       <div class="form-group">
-        <label for="novelAuthor">Author's name</label>
-        <input id="novelAuthor" type="text"
-          placeholder="Enter the author's name">
+        <label for="slideAnnouncement">Announcement</label>
+        <input id="slideAnnouncement" placeholder="For example: Coming Soon">
       </div>
 
       <div class="form-group">
-        <label for="novelCover">Novel cover image</label>
-        <input id="novelCover" type="file"
-          accept="image/*" required>
+        <label for="slideDescription">Short description</label>
+        <textarea id="slideDescription" placeholder="Write a short introduction to the novel"></textarea>
       </div>
 
-      <button class="button primary" type="submit">
-        + Add Featured Novel
-      </button>
+      <div class="form-group">
+        <label for="slideCover">Upload novel cover or billboard artwork</label>
+        <input id="slideCover" type="file" accept="image/*" required>
+      </div>
+
+      <button class="primary" type="submit">+ Add to Billboard</button>
     </form>
 
-    <p class="notice" id="uploadNotice">
-      No featured novels have been added.
-    </p>
+    <p class="admin-count" id="slideCount">0 of 5 slides added</p>
 
-    <h2 style="margin-top:35px">Your Featured Novels</h2>
-
-    <div class="featured-list" id="featuredList">
-      <div class="empty-shelf">
-        Your uploaded novels will appear here.
-      </div>
+    <h2>Your Billboard Slides</h2>
+    <div class="admin-list" id="adminList">
+      <div class="empty-shelf">You haven't added any slides yet.</div>
     </div>
 
     <p class="notice">
-      This is an early dashboard preview. Uploaded covers are
-      temporarily stored in this browser. Permanent online
-      storage, administrator login and publishing controls
-      will be connected in a later stage.
+      Prototype limitation: slides are stored in this browser only.
+      A secure administrator login and permanent shared online image
+      storage must be connected before this can be used as a live admin system.
     </p>
   </div>
 </section>
 
-<!-- NOVEL DETAILS: READ OR LISTEN -->
+<!-- NOVEL DETAILS -->
 
 <div class="modal" id="novelModal">
   <div class="dialog">
     <button class="close" id="closeModal" aria-label="Close">×</button>
-
-    <div class="eyebrow">AHRUH Novel</div>
-
-    <h2 id="modalTitle"></h2>
-    <p id="modalAuthor"></p>
-
+    <div class="eyebrow">AHRUH NOVEL</div>
+    <h2 id="detailTitle"></h2>
+    <p id="detailDescription"></p>
     <p>How would you like to experience this story?</p>
 
     <div class="choices">
-      <button class="choice" id="readButton">
-        <strong>▤ Read the Novel</strong>
-        <span>Enjoy the written chapters at your own pace.</span>
+      <button class="choice" id="readChoice">
+        <strong>▤ Read</strong>
+        <span>Enjoy the written novel chapter by chapter.</span>
       </button>
 
-      <button class="choice" id="listenButton">
-        <strong>♫ Listen to the Story</strong>
-        <span>Experience the same novel as a cinematic audio drama.</span>
+      <button class="choice" id="listenChoice">
+        <strong>♫ Listen</strong>
+        <span>Experience the same story as cinematic audio drama.</span>
       </button>
     </div>
   </div>
@@ -877,233 +526,327 @@ footer {
 </footer>
 
 <script>
-const homePage = document.getElementById("homePage");
-const dashboardPage = document.getElementById("dashboardPage");
-const navigation = document.getElementById("navigation");
-const modal = document.getElementById("novelModal");
+/* PAGE SELECTION */
 
-let featuredNovels = [];
-let selectedNovel = null;
+const homePage = document.getElementById("homePage");
+const adminPage = document.getElementById("adminPage");
 
 function showHome() {
   homePage.style.display = "block";
-  dashboardPage.classList.remove("active");
-  navigation.classList.remove("open");
-  window.scrollTo(0, 0);
+  adminPage.classList.remove("active");
+  window.scrollTo(0,0);
 }
 
-function showDashboard() {
+function showAdmin() {
   homePage.style.display = "none";
-  dashboardPage.classList.add("active");
-  navigation.classList.remove("open");
-  window.scrollTo(0, 0);
+  adminPage.classList.add("active");
+  window.scrollTo(0,0);
 }
 
-document.getElementById("dashboardButton")
-  .addEventListener("click", showDashboard);
+document.getElementById("returnHome").onclick = () => {
+  history.replaceState(null,"",location.pathname);
+  showHome();
+};
 
-document.getElementById("backHome")
-  .addEventListener("click", showHome);
+document.getElementById("homeLogo").onclick = event => {
+  event.preventDefault();
+  history.replaceState(null,"",location.pathname);
+  showHome();
+};
 
-document.getElementById("logoHome")
-  .addEventListener("click", event => {
-    event.preventDefault();
-    showHome();
-  });
+if (new URLSearchParams(location.search).get("admin") === "1") {
+  showAdmin();
+}
 
-document.getElementById("menuButton")
-  .addEventListener("click", () => {
-    navigation.classList.toggle("open");
-  });
+/* MOBILE MENU */
+
+const navigation = document.getElementById("navigation");
+
+document.getElementById("menuButton").onclick = () => {
+  navigation.classList.toggle("open");
+};
 
 navigation.querySelectorAll("a").forEach(link => {
-  link.addEventListener("click", () => {
-    showHome();
-  });
+  link.onclick = () => navigation.classList.remove("open");
 });
 
 /* SEARCH */
 
-document.getElementById("searchButton")
-  .addEventListener("click", () => {
-    document.getElementById("searchPanel")
-      .classList.toggle("open");
-  });
+document.getElementById("searchButton").onclick = () => {
+  document.getElementById("searchPanel").classList.toggle("open");
+};
 
-document.getElementById("searchInput")
-  .addEventListener("input", event => {
-    const query = event.target.value.toLowerCase();
+/* BILLBOARD DATA */
 
-    document.querySelectorAll(".novel-card, .billboard-card")
-      .forEach(card => {
-        card.style.display =
-          card.textContent.toLowerCase().includes(query)
-            ? ""
-            : "none";
-      });
-  });
+const STORAGE_KEY = "ahruh_billboard_v1";
+let billboardItems = [];
 
-/* FEATURED NOVELS */
-
-function openNovel(novel) {
-  selectedNovel = novel;
-
-  document.getElementById("modalTitle").textContent =
-    novel.title;
-
-  document.getElementById("modalAuthor").textContent =
-    novel.author || "AHRUH";
-
-  modal.classList.add("open");
+try {
+  billboardItems = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+  if (!Array.isArray(billboardItems)) billboardItems = [];
+} catch {
+  billboardItems = [];
 }
 
-function renderFeatured() {
-  const list = document.getElementById("featuredList");
-  const billboard = document.getElementById("homeBillboard");
+let currentSlide = 0;
+let slideTimer = null;
 
-  list.innerHTML = "";
-  billboard.innerHTML = "";
+const slides = document.getElementById("slides");
+const dots = document.getElementById("slideDots");
+const emptyBillboard = document.getElementById("billboardEmpty");
 
-  if (featuredNovels.length === 0) {
-    list.innerHTML =
-      '<div class="empty-shelf">Your uploaded novels will appear here.</div>';
+function saveBillboard() {
+  try {
+    localStorage.setItem(STORAGE_KEY,JSON.stringify(billboardItems));
+  } catch {
+    alert("Browser storage is full. Please use smaller images.");
+  }
+}
 
-    billboard.innerHTML =
-      '<div class="empty-shelf">Featured novels selected from your Dashboard will appear here.</div>';
+function makeSlide(item) {
+  const slide = document.createElement("article");
+  slide.className = "slide";
 
-    document.getElementById("uploadNotice").textContent =
-      "No featured novels have been added.";
+  const image = document.createElement("img");
+  image.className = "slide-image";
+  image.src = item.cover;
+  image.alt = item.title;
 
+  const content = document.createElement("div");
+  content.className = "slide-content";
+
+  const tag = document.createElement("div");
+  tag.className = "slide-tag";
+  tag.textContent = item.announcement || "Featured Novel";
+
+  const title = document.createElement("h1");
+  title.textContent = item.title;
+
+  const description = document.createElement("p");
+  description.textContent = item.description || "Discover this story on AHRUH.";
+
+  const button = document.createElement("button");
+  button.className = "primary slide-button";
+  button.textContent = "Discover Story";
+  button.onclick = () => openDetails(item);
+
+  content.append(tag,title,description,button);
+  slide.append(image,content);
+  return slide;
+}
+
+function showSlide(index) {
+  if (!billboardItems.length) return;
+
+  currentSlide = (index + billboardItems.length) % billboardItems.length;
+  slides.style.transform = "translateX(-" + (currentSlide * 100) + "%)";
+
+  dots.querySelectorAll(".dot").forEach((dot,i) => {
+    dot.classList.toggle("active",i === currentSlide);
+  });
+}
+
+function startAutoSlide() {
+  clearInterval(slideTimer);
+
+  if (billboardItems.length > 1) {
+    slideTimer = setInterval(() => {
+      showSlide(currentSlide + 1);
+    },5000);
+  }
+}
+
+function renderBillboard() {
+  slides.innerHTML = "";
+  dots.innerHTML = "";
+
+  if (!billboardItems.length) {
+    emptyBillboard.style.display = "flex";
+    slides.style.display = "none";
+    document.getElementById("previousSlide").style.display = "none";
+    document.getElementById("nextSlide").style.display = "none";
+    clearInterval(slideTimer);
     return;
   }
 
-  featuredNovels.forEach((novel, index) => {
-    const item = document.createElement("div");
-    item.className = "featured-item";
+  emptyBillboard.style.display = "none";
+  slides.style.display = "flex";
+
+  billboardItems.forEach((item,index) => {
+    slides.appendChild(makeSlide(item));
+
+    const dot = document.createElement("button");
+    dot.className = "dot";
+    dot.setAttribute("aria-label","Go to slide " + (index + 1));
+    dot.onclick = () => {
+      showSlide(index);
+      startAutoSlide();
+    };
+    dots.appendChild(dot);
+  });
+
+  const arrowsVisible = billboardItems.length > 1 ? "block" : "none";
+  document.getElementById("previousSlide").style.display = arrowsVisible;
+  document.getElementById("nextSlide").style.display = arrowsVisible;
+
+  showSlide(0);
+  startAutoSlide();
+}
+
+document.getElementById("previousSlide").onclick = () => {
+  showSlide(currentSlide - 1);
+  startAutoSlide();
+};
+
+document.getElementById("nextSlide").onclick = () => {
+  showSlide(currentSlide + 1);
+  startAutoSlide();
+};
+
+/* SWIPE SUPPORT */
+
+let touchStartX = 0;
+
+document.getElementById("billboard").addEventListener("touchstart",event => {
+  touchStartX = event.changedTouches[0].screenX;
+},{passive:true});
+
+document.getElementById("billboard").addEventListener("touchend",event => {
+  const difference = event.changedTouches[0].screenX - touchStartX;
+
+  if (Math.abs(difference) > 45 && billboardItems.length > 1) {
+    showSlide(currentSlide + (difference < 0 ? 1 : -1));
+    startAutoSlide();
+  }
+},{passive:true});
+
+/* ADMIN UPLOADS */
+
+const adminList = document.getElementById("adminList");
+const slideCount = document.getElementById("slideCount");
+
+function renderAdminList() {
+  adminList.innerHTML = "";
+
+  if (!billboardItems.length) {
+    adminList.innerHTML =
+      '<div class="empty-shelf">You haven’t added any billboard slides.</div>';
+  }
+
+  billboardItems.forEach((item,index) => {
+    const card = document.createElement("div");
+    card.className = "admin-item";
 
     const image = document.createElement("img");
-    image.src = novel.cover;
-    image.alt = novel.title;
+    image.src = item.cover;
+    image.alt = item.title;
 
     const title = document.createElement("p");
-    title.textContent = novel.title;
+    title.textContent = item.title;
 
-    const author = document.createElement("p");
-    author.textContent = novel.author || "Author not entered";
+    const announcement = document.createElement("p");
+    announcement.textContent = item.announcement || "Featured Novel";
 
     const remove = document.createElement("button");
     remove.className = "remove-button";
     remove.textContent = "Remove";
-
-    remove.addEventListener("click", () => {
-      featuredNovels.splice(index, 1);
-      renderFeatured();
-    });
-
-    item.append(image, title, author, remove);
-    list.appendChild(item);
-
-    const banner = document.createElement("article");
-    banner.className = "billboard-card";
-
-    const bannerImage = document.createElement("img");
-    bannerImage.src = novel.cover;
-    bannerImage.alt = novel.title;
-
-    const details = document.createElement("div");
-    const bannerTitle = document.createElement("h3");
-    bannerTitle.textContent = novel.title;
-
-    const bannerAuthor = document.createElement("p");
-    bannerAuthor.textContent = novel.author || "AHRUH";
-
-    details.append(bannerTitle, bannerAuthor);
-    banner.append(bannerImage, details);
-
-    banner.addEventListener("click", () => openNovel(novel));
-    billboard.appendChild(banner);
-  });
-
-  document.getElementById("uploadNotice").textContent =
-    featuredNovels.length + " of 5 featured novels added.";
-}
-
-/* UPLOAD */
-
-document.getElementById("uploadForm")
-  .addEventListener("submit", event => {
-    event.preventDefault();
-
-    if (featuredNovels.length >= 5) {
-      alert("The billboard can contain a maximum of five novels.");
-      return;
-    }
-
-    const title =
-      document.getElementById("novelTitle").value.trim();
-
-    const author =
-      document.getElementById("novelAuthor").value.trim();
-
-    const file =
-      document.getElementById("novelCover").files[0];
-
-    if (!title || !file) {
-      alert("Please enter a title and upload a cover image.");
-      return;
-    }
-
-    if (!file.type.startsWith("image/")) {
-      alert("Please select an image file.");
-      return;
-    }
-
-    const reader = new FileReader();
-
-    reader.onload = () => {
-      featuredNovels.push({
-        title,
-        author,
-        cover: reader.result
-      });
-
-      renderFeatured();
-      event.target.reset();
+    remove.onclick = () => {
+      billboardItems.splice(index,1);
+      saveBillboard();
+      renderAdminList();
+      renderBillboard();
     };
 
-    reader.readAsDataURL(file);
+    card.append(image,title,announcement,remove);
+    adminList.appendChild(card);
   });
 
-/* NOVEL FORMAT CHOICES */
+  slideCount.textContent = billboardItems.length + " of 5 slides added";
+}
 
-document.getElementById("closeModal")
-  .addEventListener("click", () => {
-    modal.classList.remove("open");
-  });
+document.getElementById("billboardForm").onsubmit = event => {
+  event.preventDefault();
 
-modal.addEventListener("click", event => {
-  if (event.target === modal) {
-    modal.classList.remove("open");
+  if (billboardItems.length >= 5) {
+    alert("You can add a maximum of five billboard slides.");
+    return;
   }
+
+  const title = document.getElementById("slideTitle").value.trim();
+  const announcement = document.getElementById("slideAnnouncement").value.trim();
+  const description = document.getElementById("slideDescription").value.trim();
+  const file = document.getElementById("slideCover").files[0];
+
+  if (!title || !file) {
+    alert("Please enter a title and select an image.");
+    return;
+  }
+
+  if (!file.type.startsWith("image/")) {
+    alert("Please select an image file.");
+    return;
+  }
+
+  if (file.size > 2 * 1024 * 1024) {
+    alert("Please use an image smaller than 2MB for this preview.");
+    return;
+  }
+
+  const reader = new FileReader();
+
+  reader.onload = () => {
+    billboardItems.push({
+      title,
+      announcement,
+      description,
+      cover: reader.result
+    });
+
+    saveBillboard();
+    renderAdminList();
+    renderBillboard();
+    event.target.reset();
+  };
+
+  reader.readAsDataURL(file);
+};
+
+/* NOVEL DETAILS */
+
+const modal = document.getElementById("novelModal");
+
+function openDetails(item) {
+  document.getElementById("detailTitle").textContent = item.title;
+  document.getElementById("detailDescription").textContent =
+    item.description || "Discover this story on AHRUH.";
+
+  modal.classList.add("open");
+}
+
+document.getElementById("closeModal").onclick = () => {
+  modal.classList.remove("open");
+};
+
+modal.onclick = event => {
+  if (event.target === modal) modal.classList.remove("open");
+};
+
+document.getElementById("readChoice").onclick = () => {
+  alert("The written reading experience will be connected in a later stage.");
+};
+
+document.getElementById("listenChoice").onclick = () => {
+  alert("The cinematic audio experience will be connected in a later stage.");
+};
+
+document.addEventListener("keydown",event => {
+  if (event.key === "Escape") modal.classList.remove("open");
 });
 
-document.getElementById("readButton")
-  .addEventListener("click", () => {
-    alert("The reading feature will be connected in the next development stage.");
-  });
+/* INITIAL DISPLAY */
 
-document.getElementById("listenButton")
-  .addEventListener("click", () => {
-    alert("The cinematic audio player will be connected in the next development stage.");
-  });
-
-document.addEventListener("keydown", event => {
-  if (event.key === "Escape") {
-    modal.classList.remove("open");
-  }
-});
-
-renderFeatured();
+renderBillboard();
+renderAdminList();
 </script>
 
 </body>

@@ -1,0 +1,742 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#09090b">
+<meta name="description" content="AHRUH — Read novels and experience cinematic audio drama.">
+<title>AHRUH | Stories Beyond the Page</title>
+
+<style>
+:root {
+  --bg: #09090b;
+  --panel: #151519;
+  --red: #df2638;
+  --white: #f7f5f5;
+  --muted: #aaa7ad;
+  --line: #29292f;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--white);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+button, input { font: inherit; }
+button { cursor: pointer; }
+
+header {
+  height: 76px;
+  padding: 0 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #0c0c0f;
+  border-bottom: 1px solid var(--line);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 27px;
+  font-weight: 900;
+  letter-spacing: 5px;
+}
+
+.logo span { color: var(--red); }
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 27px;
+}
+
+nav a {
+  color: #d1cdd1;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+nav a:hover { color: white; }
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 17px;
+}
+
+.icon-button {
+  width: 38px;
+  height: 38px;
+  border: 0;
+  background: transparent;
+  color: white;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+}
+
+.icon-button:hover { background: #ffffff12; }
+
+.icon-button svg {
+  width: 22px;
+  height: 22px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.wallet {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px 13px;
+  color: white;
+  font-size: 13px;
+}
+
+.wallet strong { color: #e9bd65; }
+
+.menu-button { display: none; }
+
+/* HERO BILLBOARD */
+
+.hero {
+  min-height: 510px;
+  padding: 80px 8%;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 80% 45%, #751c2c66, transparent 45%),
+    linear-gradient(90deg, #09090b 10%, #09090bcc 55%, #09090b66);
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    0deg, var(--bg), transparent 25%, transparent 80%, #09090b66
+  );
+  pointer-events: none;
+}
+
+.hero-content {
+  max-width: 600px;
+  position: relative;
+  z-index: 2;
+}
+
+.eyebrow {
+  color: #ff6878;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  font-family: Georgia, serif;
+  font-size: clamp(43px, 6vw, 76px);
+  line-height: 1;
+  margin: 20px 0;
+}
+
+.hero p {
+  max-width: 480px;
+  color: #d0cbd0;
+  line-height: 1.8;
+}
+
+.button {
+  display: inline-block;
+  padding: 13px 21px;
+  border: 0;
+  border-radius: 6px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.primary {
+  background: var(--red);
+  color: white;
+}
+
+.secondary {
+  background: #ffffff12;
+  border: 1px solid #ffffff38;
+  color: white;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 28px;
+}
+
+/* HOMEPAGE SHELVES */
+
+main { padding: 0 5% 70px; }
+
+.section { padding-top: 43px; }
+
+.section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 19px;
+}
+
+.section-heading h2 {
+  font-size: 21px;
+  margin: 0;
+}
+
+.section-heading a {
+  color: #ff7784;
+  font-size: 12px;
+  text-decoration: none;
+}
+
+.shelf {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  min-height: 145px;
+  padding: 3px 2px 15px;
+  scrollbar-color: #45454d transparent;
+}
+
+.empty-shelf {
+  min-width: 100%;
+  min-height: 125px;
+  border: 1px dashed #393940;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #77747c;
+  font-size: 13px;
+  text-align: center;
+  padding: 20px;
+}
+
+.novel-card {
+  flex: 0 0 175px;
+  cursor: pointer;
+}
+
+.novel-cover {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: 8px;
+  background: #19191e;
+  border: 1px solid #ffffff18;
+}
+
+.novel-card h3 {
+  font-size: 13px;
+  margin: 10px 0 4px;
+}
+
+.novel-card p {
+  font-size: 11px;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* WRITERS SECTION */
+
+.writers {
+  margin-top: 55px;
+  padding: 35px;
+  border: 1px solid #ffffff18;
+  border-radius: 10px;
+  background: linear-gradient(110deg, #271016, #151317);
+}
+
+.writers h2 { margin: 12px 0; }
+
+.writers p {
+  max-width: 530px;
+  color: #c5bdc1;
+  line-height: 1.7;
+}
+
+/* DASHBOARD */
+
+.dashboard {
+  display: none;
+  padding: 40px 5%;
+  min-height: 80vh;
+}
+
+.dashboard.active { display: block; }
+
+.dashboard h1 { margin-top: 0; }
+
+.dashboard-intro {
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.admin-panel {
+  max-width: 850px;
+  margin-top: 28px;
+  padding: 25px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+
+.admin-panel h2 { font-size: 19px; }
+
+.form-group {
+  margin: 20px 0;
+}
+
+.form-group label {
+  display: block;
+  font-size: 13px;
+  margin-bottom: 9px;
+  color: #ddd;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 13px;
+  background: #09090b;
+  border: 1px solid #393940;
+  color: white;
+  border-radius: 6px;
+}
+
+.form-group input[type="file"] {
+  padding: 10px;
+}
+
+.featured-list {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  padding: 15px 0;
+}
+
+.featured-item {
+  flex: 0 0 150px;
+  background: #202025;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.featured-item img {
+  width: 100%;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.featured-item p {
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+
+.remove-button {
+  border: 1px solid #71303a;
+  background: transparent;
+  color: #ff8792;
+  padding: 7px 10px;
+  border-radius: 5px;
+  font-size: 11px;
+}
+
+.notice {
+  color: #aaa;
+  font-size: 12px;
+  line-height: 1.6;
+  margin-top: 15px;
+}
+
+footer {
+  border-top: 1px solid var(--line);
+  padding: 25px 5%;
+  color: #777;
+  font-size: 12px;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* MOBILE */
+
+@media (max-width: 760px) {
+  header { height: 68px; }
+
+  .menu-button { display: grid; }
+
+  nav {
+    display: none;
+    position: absolute;
+    top: 68px;
+    left: 0;
+    right: 0;
+    padding: 22px;
+    background: #111114;
+    border-bottom: 1px solid var(--line);
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  nav.open { display: flex; }
+
+  .header-actions { gap: 5px; }
+
+  .wallet { padding: 8px; font-size: 11px; }
+
+  .hero { min-height: 450px; padding: 55px 7%; }
+
+  .shelf { min-height: 130px; }
+
+  .novel-card { flex-basis: 42vw; }
+
+  .writers { padding: 24px; }
+
+  footer { flex-direction: column; gap: 10px; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <a href="#home" class="logo">AHR<span>U</span>H</a>
+
+  <button class="icon-button menu-button" id="menuButton" aria-label="Menu">
+    <svg viewBox="0 0 24 24">
+      <path d="M4 6h16M4 12h16M4 18h16"/>
+    </svg>
+  </button>
+
+  <nav id="navigation">
+    <a href="#home" class="nav-link">Home</a>
+    <a href="#novels" class="nav-link">Novels</a>
+    <a href="#audio" class="nav-link">Audio Drama</a>
+    <a href="#writers" class="nav-link">Writers’ Studio</a>
+    <a href="#dashboard" class="nav-link">Dashboard</a>
+  </nav>
+
+  <div class="header-actions">
+
+    <button class="icon-button" aria-label="Search" title="Search">
+      <svg viewBox="0 0 24 24">
+        <circle cx="10.8" cy="10.8" r="6.8"/>
+        <path d="m16 16 5 5"/>
+      </svg>
+    </button>
+
+    <button class="icon-button" aria-label="Notifications" title="Notifications">
+      <svg viewBox="0 0 24 24">
+        <path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/>
+        <path d="M10 21h4"/>
+      </svg>
+    </button>
+
+    <button class="icon-button" aria-label="Profile" title="Profile">
+      <svg viewBox="0 0 24 24">
+        <circle cx="12" cy="8" r="4"/>
+        <path d="M4 21a8 8 0 0 1 16 0"/>
+      </svg>
+    </button>
+
+    <div class="wallet">◈ <strong>0</strong> coins</div>
+  </div>
+</header>
+
+<!-- HOME PAGE -->
+
+<div id="homePage">
+
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div class="eyebrow">Stories beyond the page</div>
+
+    <h1>Every story<br>has another life.</h1>
+
+    <p>
+      Discover unforgettable novels. Read every word,
+      or step inside a story through cinematic audio drama,
+      brought to life with character voices, emotion and sound.
+    </p>
+
+    <div class="hero-buttons">
+      <a href="#novels" class="button primary">Explore Novels</a>
+      <a href="#writers" class="button secondary">Writers’ Studio</a>
+    </div>
+  </div>
+</section>
+
+<main>
+
+  <section class="section" id="novels">
+    <div class="section-heading">
+      <h2>Trending Novels</h2>
+      <a href="#novels">Explore all →</a>
+    </div>
+    <div class="shelf" id="trendingShelf">
+      <div class="empty-shelf">Novels added by the administrator will appear here.</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-heading">
+      <h2>New Releases</h2>
+      <a href="#novels">See all →</a>
+    </div>
+    <div class="shelf" id="newShelf">
+      <div class="empty-shelf">New releases will appear here.</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-heading">
+      <h2>AHRUH Originals</h2>
+      <a href="#novels">Discover originals →</a>
+    </div>
+    <div class="shelf" id="originalShelf">
+      <div class="empty-shelf">AHRUH Originals will appear here.</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-heading">
+      <h2>Popular Novels</h2>
+      <a href="#novels">View collection →</a>
+    </div>
+    <div class="shelf" id="popularShelf">
+      <div class="empty-shelf">Popular novels will appear here.</div>
+    </div>
+  </section>
+
+  <section class="writers" id="writers">
+    <div class="eyebrow">Your story starts here</div>
+    <h2>Have a story to tell?</h2>
+    <p>
+      Bring your imagination to AHRUH.
+      Writers’ Studio will be the home for authors
+      who want to prepare, submit and publish their work.
+    </p>
+    <button class="button primary">Explore Writers’ Studio</button>
+  </section>
+
+  <section class="section" id="audio">
+    <div class="section-heading">
+      <h2>Cinematic Audio Drama</h2>
+    </div>
+    <div class="empty-shelf">
+      Cinematic audio productions will be available here.
+    </div>
+  </section>
+
+</main>
+</div>
+
+<!-- ADMIN DASHBOARD -->
+
+<section class="dashboard" id="dashboard">
+
+  <div class="eyebrow">AHRUH administration</div>
+  <h1>Dashboard</h1>
+
+  <p class="dashboard-intro">
+    Manage your homepage, featured novels and platform content.
+  </p>
+
+  <div class="admin-panel">
+    <h2>Homepage Billboard</h2>
+
+    <p class="dashboard-intro">
+      Upload up to five novels to feature in the scrolling
+      homepage billboard. You can change or remove them later.
+    </p>
+
+    <form id="uploadForm">
+
+      <div class="form-group">
+        <label for="novelTitle">Novel title</label>
+        <input id="novelTitle" type="text"
+          placeholder="Enter novel title" required>
+      </div>
+
+      <div class="form-group">
+        <label for="novelAuthor">Author</label>
+        <input id="novelAuthor" type="text"
+          placeholder="Enter author name">
+      </div>
+
+      <div class="form-group">
+        <label for="novelCover">Upload novel cover</label>
+        <input id="novelCover" type="file"
+          accept="image/*" required>
+      </div>
+
+      <button class="button primary" type="submit">
+        Upload to Billboard
+      </button>
+
+    </form>
+
+    <p class="notice" id="uploadNotice">
+      No novels have been uploaded yet.
+    </p>
+
+    <h2>Featured Novels</h2>
+
+    <div class="featured-list" id="featuredList">
+      <div class="empty-shelf">
+        Your uploaded novels will appear here.
+      </div>
+    </div>
+
+    <p class="notice">
+      This is a local preview of the dashboard upload feature.
+      Uploaded items are stored only in this browser for now.
+      Permanent online storage and administrator security
+      will be connected in a later development stage.
+    </p>
+
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 AHRUH. All rights reserved.</span>
+  <span>Read it. Hear it. Live it.</span>
+</footer>
+
+<script>
+const homePage = document.getElementById("homePage");
+const dashboard = document.getElementById("dashboard");
+const navigation = document.getElementById("navigation");
+
+function showPage(page) {
+  const isDashboard = page === "dashboard";
+
+  homePage.style.display = isDashboard ? "none" : "block";
+  dashboard.classList.toggle("active", isDashboard);
+
+  navigation.classList.remove("open");
+  window.scrollTo(0, 0);
+}
+
+document.querySelectorAll('a[href="#dashboard"]').forEach(link => {
+  link.addEventListener("click", event => {
+    event.preventDefault();
+    showPage("dashboard");
+  });
+});
+
+document.querySelectorAll('a[href="#home"], a[href="#novels"], a[href="#audio"], a[href="#writers"]').forEach(link => {
+  link.addEventListener("click", () => showPage("home"));
+});
+
+document.getElementById("menuButton").addEventListener("click", () => {
+  navigation.classList.toggle("open");
+});
+
+/* BILLBOARD UPLOAD PREVIEW */
+
+let featuredNovels = [];
+
+const uploadForm = document.getElementById("uploadForm");
+const featuredList = document.getElementById("featuredList");
+const uploadNotice = document.getElementById("uploadNotice");
+
+function renderFeatured() {
+  featuredList.innerHTML = "";
+
+  if (featuredNovels.length === 0) {
+    featuredList.innerHTML =
+      '<div class="empty-shelf">Your uploaded novels will appear here.</div>';
+    uploadNotice.textContent = "No novels have been uploaded yet.";
+    return;
+  }
+
+  featuredNovels.forEach((novel, index) => {
+    const item = document.createElement("div");
+    item.className = "featured-item";
+
+    const image = document.createElement("img");
+    image.src = novel.cover;
+    image.alt = novel.title + " cover";
+
+    const title = document.createElement("p");
+    title.textContent = novel.title;
+
+    const author = document.createElement("p");
+    author.textContent = novel.author || "Author not entered";
+
+    const remove = document.createElement("button");
+    remove.className = "remove-button";
+    remove.textContent = "Remove";
+    remove.addEventListener("click", () => {
+      featuredNovels.splice(index, 1);
+      renderFeatured();
+    });
+
+    item.append(image, title, author, remove);
+    featuredList.appendChild(item);
+  });
+
+  uploadNotice.textContent =
+    featuredNovels.length + " of 5 featured novels uploaded.";
+}
+
+uploadForm.addEventListener("submit", event => {
+  event.preventDefault();
+
+  if (featuredNovels.length >= 5) {
+    alert("The billboard can contain a maximum of five novels.");
+    return;
+  }
+
+  const title = document.getElementById("novelTitle").value.trim();
+  const author = document.getElementById("novelAuthor").value.trim();
+  const file = document.getElementById("novelCover").files[0];
+
+  if (!title || !file) {
+    alert("Please enter a title and choose a cover image.");
+    return;
+  }
+
+  const reader = new FileReader();
+
+  reader.onload = () => {
+    featuredNovels.push({
+      title: title,
+      author: author,
+      cover: reader.result
+    });
+
+    renderFeatured();
+    uploadForm.reset();
+  };
+
+  reader.readAsDataURL(file);
+});
+
+renderFeatured();
+</script>
+
+</body>
+</html>

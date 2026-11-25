@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#09090b">
-<meta name="description" content="AHRUH — Discover novels and experience stories beyond the page.">
+<meta name="description" content="AHRUH — Every story has another life.">
 <title>AHRUH | Stories Beyond the Page</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,7 +17,7 @@
   --bg: #09090b;
   --panel: #17171c;
   --red: #ff1738;
-  --red-dark: #c90025;
+  --red-light: #ff526b;
   --white: #ffffff;
   --muted: #aaaab3;
   --line: #303037;
@@ -49,13 +49,13 @@ button {
 /* HEADER */
 
 header {
-  min-height: 76px;
+  min-height: 78px;
   padding: 0 5%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 22px;
-  background: #0c0c0f;
+  background: #0b0b0e;
   border-bottom: 1px solid var(--line);
   position: sticky;
   top: 0;
@@ -65,7 +65,7 @@ header {
 .logo {
   color: white;
   text-decoration: none;
-  font-size: 28px;
+  font-size: 29px;
   font-weight: 700;
   letter-spacing: 5px;
   white-space: nowrap;
@@ -89,8 +89,7 @@ nav a {
   transition: color .2s;
 }
 
-nav a:hover,
-nav a.active {
+nav a:hover {
   color: var(--red);
 }
 
@@ -168,196 +167,129 @@ nav a.active {
   border-color: var(--red);
 }
 
-/* TOP BILLBOARD */
+/* HERO SECTION */
 
-.billboard {
-  min-height: 490px;
-  position: relative;
-  overflow: hidden;
-  background: #180910;
-}
-
-.billboard-empty {
-  min-height: 490px;
+.hero {
+  min-height: 570px;
+  padding: 75px 7%;
   display: flex;
   align-items: center;
-  padding: 60px 8%;
+  position: relative;
+  overflow: hidden;
+
   background:
-    radial-gradient(ellipse at 78% 40%, #ff17385c, transparent 45%),
-    radial-gradient(ellipse at 55% 100%, #90002035, transparent 55%),
-    linear-gradient(110deg, #09090c, #200811);
+    radial-gradient(
+      ellipse at 75% 43%,
+      #ff17385c,
+      transparent 44%
+    ),
+    radial-gradient(
+      ellipse at 55% 100%,
+      #90002035,
+      transparent 55%
+    ),
+    linear-gradient(
+      110deg,
+      #09090c 5%,
+      #16080d 60%,
+      #270711
+    );
 }
 
-.billboard-empty-content {
-  max-width: 620px;
+.hero::before {
+  content: "";
+  position: absolute;
+  width: 430px;
+  height: 430px;
+  right: 8%;
+  top: 45px;
+  border: 1px solid #ff17383b;
+  border-radius: 50%;
+  box-shadow:
+    0 0 70px #ff173822,
+    inset 0 0 70px #ff173815;
+  pointer-events: none;
+}
+
+.hero-content {
+  max-width: 690px;
+  position: relative;
+  z-index: 2;
 }
 
 .eyebrow {
-  color: #ff637a;
-  font-size: 11px;
+  color: #ff6278;
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 4px;
   text-transform: uppercase;
 }
 
-.billboard-empty h1 {
-  font-size: clamp(43px, 6vw, 78px);
-  line-height: 1;
+.hero h1 {
+  font-size: clamp(48px, 7vw, 82px);
+  font-weight: 700;
   letter-spacing: -3px;
-  margin: 20px 0;
+  line-height: .99;
+  margin: 22px 0;
 }
 
-.billboard-empty h1 span {
+.hero h1 span {
   color: var(--red);
 }
 
-.billboard-empty p {
-  max-width: 480px;
+.hero p {
+  max-width: 560px;
   color: #d0cbd0;
-  font-size: 15px;
-  line-height: 1.8;
+  font-size: 16px;
+  line-height: 1.85;
 }
 
-/* BILLBOARD SLIDES */
+/* HERO BUTTONS */
 
-.slides {
+.hero-buttons {
   display: flex;
-  width: 100%;
-  height: 490px;
-  transition: transform .65s ease;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 30px;
 }
 
-.slide {
-  min-width: 100%;
-  height: 100%;
-  padding: 55px 8%;
-  position: relative;
-  display: flex;
+.button {
+  display: inline-flex;
   align-items: center;
-  overflow: hidden;
-  background: linear-gradient(90deg, #09090b 5%, #09090bcc 52%, #09090b55);
-}
-
-.slide::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    ellipse at 78% 40%,
-    #ff17385c,
-    transparent 48%
-  );
-  pointer-events: none;
-}
-
-.slide-image {
-  position: absolute;
-  right: 7%;
-  top: 7%;
-  width: 36%;
-  height: 86%;
-  object-fit: cover;
-  border-radius: 9px;
-  opacity: .78;
-  mask-image: linear-gradient(90deg, transparent, black 20%);
-}
-
-.slide-content {
-  position: relative;
-  z-index: 2;
-  max-width: 590px;
-}
-
-.slide-tag {
-  display: inline-block;
-  padding: 7px 12px;
-  color: white;
-  background: var(--red);
-  border-radius: 4px;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-}
-
-.slide h2 {
-  font-size: clamp(40px, 6vw, 72px);
-  line-height: 1.02;
-  letter-spacing: -3px;
-  margin: 20px 0;
-}
-
-.slide p {
-  max-width: 470px;
-  color: #e0d8dc;
-  line-height: 1.8;
-  font-size: 15px;
-}
-
-.primary-button {
-  display: inline-block;
-  padding: 14px 22px;
-  color: white;
-  background: var(--red);
-  border: 0;
+  justify-content: center;
+  min-height: 52px;
+  padding: 14px 24px;
   border-radius: 7px;
+  font-size: 15px;
   font-weight: 700;
-  box-shadow: 0 5px 25px #ff17383b;
+  color: white !important;
+  text-decoration: none;
+  transition: background .2s, border-color .2s, transform .2s;
 }
 
-.primary-button:hover {
+.button:hover {
+  transform: translateY(-2px);
+}
+
+.button-primary {
+  background: var(--red);
+  border: 1px solid var(--red);
+  box-shadow: 0 6px 25px #ff17383b;
+}
+
+.button-primary:hover {
   background: #ff405b;
 }
 
-.slide-button {
-  margin-top: 20px;
+.button-secondary {
+  background: #ffffff0c;
+  border: 1px solid #77717a;
+  color: #ffffff !important;
 }
 
-.slide-dots {
-  position: absolute;
-  z-index: 5;
-  bottom: 20px;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: center;
-  gap: 9px;
-}
-
-.dot {
-  width: 9px;
-  height: 9px;
-  padding: 0;
-  border: 0;
-  border-radius: 20px;
-  background: #777;
-}
-
-.dot.active {
-  width: 28px;
-  background: var(--red);
-}
-
-.slide-arrow {
-  position: absolute;
-  z-index: 5;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  color: white;
-  background: #08080a99;
-  border: 1px solid #ffffff44;
-  font-size: 22px;
-}
-
-.slide-arrow.prev {
-  left: 18px;
-}
-
-.slide-arrow.next {
-  right: 18px;
+.button-secondary:hover {
+  background: #ff17381c;
+  border-color: var(--red);
 }
 
 /* MAIN CONTENT */
@@ -367,95 +299,183 @@ main {
 }
 
 .section {
-  padding-top: 46px;
+  padding-top: 48px;
 }
 
 .section-heading {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   margin-bottom: 20px;
 }
 
 .section-heading h2 {
-  font-size: 23px;
   margin: 0;
+  font-size: 23px;
+  font-weight: 700;
 }
 
-.section-heading span {
+.section-heading a {
   color: #ff647a;
-  font-size: 12px;
+  text-decoration: none;
+  font-size: 13px;
 }
+
+/* EMPTY NOVEL SHELVES */
 
 .shelf {
   display: flex;
   gap: 17px;
+  min-height: 155px;
   overflow-x: auto;
-  min-height: 145px;
-  padding: 3px 2px 15px;
+  padding: 3px 2px 16px;
   scrollbar-color: #555 transparent;
 }
 
 .empty-shelf {
-  min-width: 100%;
-  min-height: 135px;
+  width: 100%;
+  min-height: 145px;
   border: 1px dashed #45454e;
-  border-radius: 9px;
+  border-radius: 10px;
   display: flex;
-  align-items: center;
   justify-content: center;
-  text-align: center;
+  align-items: center;
   padding: 20px;
+  text-align: center;
   color: #85858e;
   font-size: 14px;
 }
 
-.novel-card {
-  flex: 0 0 175px;
-  cursor: pointer;
+/* FEATURED / COMING SOON BILLBOARD */
+
+.featured-area {
+  padding-top: 45px;
 }
 
-.novel-card img {
+.featured-slider {
+  position: relative;
   width: 100%;
-  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  border-radius: 11px;
+  background: #170910;
+}
+
+.featured-empty {
+  min-height: 185px;
+  padding: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background:
+    radial-gradient(ellipse at 80% 40%, #ff17382c, transparent 45%),
+    linear-gradient(110deg, #10090c, #250b14);
+}
+
+.featured-empty p {
+  color: #aaaab3;
+  line-height: 1.7;
+}
+
+.featured-track {
+  display: flex;
+  transition: transform .6s ease;
+}
+
+.featured-slide {
+  flex: 0 0 100%;
+  min-height: 230px;
+  padding: 28px 7%;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  background:
+    radial-gradient(ellipse at 85% 40%, #ff17383b, transparent 50%),
+    linear-gradient(110deg, #12090d, #250b14);
+}
+
+.featured-slide img {
+  width: 125px;
+  height: 170px;
   object-fit: cover;
-  border-radius: 8px;
-  background: #1c1c22;
-  border: 1px solid #ffffff15;
+  border-radius: 7px;
+  border: 1px solid #ffffff25;
 }
 
-.novel-card h3 {
+.featured-slide h3 {
+  font-size: 25px;
+  margin: 12px 0;
+}
+
+.featured-slide p {
+  color: #c9c0c5;
+  line-height: 1.6;
   font-size: 14px;
-  margin: 10px 0 4px;
 }
 
-.novel-card p {
-  font-size: 12px;
-  color: var(--muted);
-  margin: 0;
+.featured-label {
+  display: inline-block;
+  color: white;
+  background: var(--red);
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
-/* WRITERS STUDIO */
+.featured-controls {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px;
+}
+
+.featured-dot {
+  width: 9px;
+  height: 9px;
+  padding: 0;
+  border: 0;
+  border-radius: 20px;
+  background: #777;
+}
+
+.featured-dot.active {
+  width: 25px;
+  background: var(--red);
+}
+
+/* WRITERS' STUDIO PROMOTION */
 
 .writers {
-  margin-top: 55px;
-  padding: 40px;
-  border-radius: 11px;
-  border: 1px solid #ff17384a;
+  margin-top: 60px;
+  padding: 42px;
+  border: 1px solid #ff17383b;
+  border-radius: 12px;
   background:
-    radial-gradient(ellipse at 90% 20%, #ff17382b, transparent 50%),
-    linear-gradient(110deg, #290a14, #151216);
+    radial-gradient(
+      ellipse at 90% 20%,
+      #ff17382c,
+      transparent 50%
+    ),
+    linear-gradient(110deg, #260b13, #151216);
 }
 
 .writers h2 {
-  font-size: 29px;
+  font-size: 30px;
   margin: 13px 0;
 }
 
 .writers p {
-  color: #d0c8ce;
-  line-height: 1.8;
-  max-width: 550px;
+  max-width: 590px;
+  color: #d1cbd0;
+  line-height: 1.85;
+  font-size: 15px;
+}
+
+.writers .button {
+  margin-top: 10px;
 }
 
 /* NOVEL DETAILS */
@@ -535,7 +555,7 @@ main {
 
 .choice span {
   font-size: 12px;
-  color: #aaa;
+  color: #aaaab3;
   line-height: 1.6;
 }
 
@@ -551,7 +571,7 @@ footer {
   gap: 15px;
 }
 
-/* MOBILE */
+/* MOBILE RESPONSIVENESS */
 
 @media(max-width: 850px) {
   header {
@@ -561,7 +581,7 @@ footer {
   nav {
     display: none;
     position: absolute;
-    top: 76px;
+    top: 77px;
     left: 0;
     right: 0;
     padding: 22px;
@@ -580,35 +600,22 @@ footer {
     display: grid;
   }
 
-  .billboard,
-  .billboard-empty {
-    min-height: 460px;
+  .hero {
+    min-height: 500px;
+    padding: 60px 7%;
   }
 
-  .slides {
-    height: 460px;
-  }
-
-  .slide {
-    padding: 45px 8%;
-  }
-
-  .slide-image {
-    right: 3%;
-    width: 42%;
-    opacity: .35;
-  }
-
-  .slide-content {
-    max-width: 90%;
-  }
-
-  .novel-card {
-    flex-basis: 42vw;
+  .hero::before {
+    right: -20%;
+    opacity: .65;
   }
 
   .writers {
-    padding: 27px;
+    padding: 28px;
+  }
+
+  .featured-slide {
+    padding: 24px 5%;
   }
 }
 
@@ -628,51 +635,67 @@ footer {
 
   .icon-button {
     width: 34px;
+    height: 36px;
   }
 
   .wallet {
     display: none;
   }
 
-  .billboard-empty h1 {
-    font-size: 45px;
+  .hero {
+    min-height: 490px;
+    padding: 55px 7%;
   }
 
-  .slide h2 {
-    font-size: 43px;
+  .hero h1 {
+    font-size: 48px;
     letter-spacing: -2px;
   }
 
-  .slide p {
+  .hero p {
+    font-size: 14px;
+  }
+
+  .hero-buttons {
+    gap: 10px;
+  }
+
+  .button {
+    padding: 13px 16px;
     font-size: 13px;
-    max-width: 300px;
-  }
-
-  .slide-image {
-    width: 50%;
-    right: -10%;
-    opacity: .24;
-  }
-
-  .slide-arrow {
-    width: 34px;
-    height: 34px;
-  }
-
-  .slide-arrow.prev {
-    left: 7px;
-  }
-
-  .slide-arrow.next {
-    right: 7px;
-  }
-
-  .choices {
-    grid-template-columns: 1fr;
   }
 
   .section-heading h2 {
     font-size: 19px;
+  }
+
+  .writers {
+    padding: 25px;
+  }
+
+  .writers h2 {
+    font-size: 25px;
+  }
+
+  .featured-slide {
+    gap: 16px;
+  }
+
+  .featured-slide img {
+    width: 95px;
+    height: 135px;
+  }
+
+  .featured-slide h3 {
+    font-size: 19px;
+  }
+
+  .featured-slide p {
+    font-size: 12px;
+  }
+
+  .choices {
+    grid-template-columns: 1fr;
   }
 
   footer {
@@ -684,27 +707,28 @@ footer {
 
 <body>
 
-<!-- PUBLIC HEADER: NO ADMIN CONTROLS -->
+<!-- PUBLIC HEADER -->
 
 <header>
   <a href="#home" class="logo">AHR<span>U</span>H</a>
 
-  <button class="icon-button menu-button" id="menuButton"
-    aria-label="Open navigation">
+  <button class="icon-button menu-button"
+    id="menuButton" aria-label="Open menu">
     <svg viewBox="0 0 24 24">
       <path d="M4 6h16M4 12h16M4 18h16"/>
     </svg>
   </button>
 
   <nav id="navigation">
-    <a href="#home" class="active">Home</a>
+    <a href="#home">Home</a>
     <a href="#novels">Novels</a>
     <a href="#writers">Writers' Studio</a>
   </nav>
 
   <div class="header-actions">
 
-    <button class="icon-button" id="searchButton" aria-label="Search">
+    <button class="icon-button"
+      id="searchButton" aria-label="Search">
       <svg viewBox="0 0 24 24">
         <circle cx="10.8" cy="10.8" r="6.8"/>
         <path d="m16 16 5 5"/>
@@ -726,64 +750,113 @@ footer {
     </button>
 
     <div class="wallet">◈ <strong>0</strong> coins</div>
+
   </div>
 </header>
 
 <!-- SEARCH -->
 
 <div class="search-panel" id="searchPanel">
-  <input type="search" id="searchInput"
-    placeholder="Search novels and authors...">
+  <input
+    type="search"
+    id="searchInput"
+    placeholder="Search novels and authors..."
+  >
 </div>
 
-<!-- PUBLIC HOMEPAGE -->
+<!-- HOMEPAGE -->
 
 <div id="home">
 
-  <!-- THE BILLBOARD IS IMMEDIATELY BELOW THE HEADER -->
+  <!-- ORIGINAL HERO SECTION -->
 
-  <section class="billboard" id="billboard">
+  <section class="hero" id="homeTop">
+    <div class="hero-content">
 
-    <div class="billboard-empty" id="billboardEmpty">
-      <div class="billboard-empty-content">
-        <div class="eyebrow">Stories beyond the page</div>
-        <h1>Every story has <span>another life.</span></h1>
-        <p>
-          Discover unforgettable novels.
-          Your next favourite story is waiting to be discovered.
-        </p>
+      <div class="eyebrow">
+        Stories beyond the page
       </div>
+
+      <h1>
+        Every story<br>
+        has <span>another life.</span>
+      </h1>
+
+      <p>
+        Discover unforgettable novels. Read every word,
+        or step inside a story through cinematic audio drama,
+        brought to life with character voices, emotion and sound.
+      </p>
+
+      <div class="hero-buttons">
+
+        <a href="#novels" class="button button-primary">
+          Explore Novels
+        </a>
+
+        <a href="#writers" class="button button-secondary">
+          Writers' Studio
+        </a>
+
+      </div>
+
     </div>
-
-    <div class="slides" id="slides" style="display:none"></div>
-
-    <button class="slide-arrow prev" id="previousSlide"
-      aria-label="Previous slide" style="display:none">‹</button>
-
-    <button class="slide-arrow next" id="nextSlide"
-      aria-label="Next slide" style="display:none">›</button>
-
-    <div class="slide-dots" id="slideDots"></div>
   </section>
 
   <main>
 
+    <!-- ADMIN-SELECTED FEATURED RELEASES -->
+
+    <section class="featured-area">
+      <div class="section-heading">
+        <h2>Coming Soon</h2>
+        <span>FEATURED STORIES</span>
+      </div>
+
+      <div class="featured-slider" id="featuredSlider">
+
+        <div class="featured-empty" id="featuredEmpty">
+          <div>
+            <div class="eyebrow">Coming soon to AHRUH</div>
+            <p>
+              Upcoming releases and featured stories
+              selected by AHRUH will appear here.
+            </p>
+          </div>
+        </div>
+
+        <div class="featured-track"
+          id="featuredTrack" style="display:none">
+        </div>
+
+        <div class="featured-controls" id="featuredControls"></div>
+
+      </div>
+    </section>
+
+    <!-- TRENDING NOVELS -->
+
     <section class="section" id="novels">
       <div class="section-heading">
         <h2>Trending Novels</h2>
-        <span>EXPLORE</span>
+        <a href="#novels">View collection →</a>
       </div>
+
       <div class="shelf" id="trendingShelf">
         <div class="empty-shelf">
-          Novels will appear here when they are published.
+          Trending novels will appear here.
         </div>
       </div>
     </section>
 
+    <!-- NEW RELEASES -->
+
     <section class="section">
       <div class="section-heading">
         <h2>New Releases</h2>
+        <a href="#novels">View collection →</a>
       </div>
+
       <div class="shelf" id="newShelf">
         <div class="empty-shelf">
           New releases will appear here.
@@ -791,10 +864,14 @@ footer {
       </div>
     </section>
 
+    <!-- AHRUH ORIGINALS -->
+
     <section class="section">
       <div class="section-heading">
         <h2>AHRUH Originals</h2>
+        <a href="#novels">View collection →</a>
       </div>
+
       <div class="shelf" id="originalShelf">
         <div class="empty-shelf">
           AHRUH Originals will appear here.
@@ -802,10 +879,14 @@ footer {
       </div>
     </section>
 
+    <!-- POPULAR NOVELS -->
+
     <section class="section">
       <div class="section-heading">
         <h2>Popular Novels</h2>
+        <a href="#novels">View collection →</a>
       </div>
+
       <div class="shelf" id="popularShelf">
         <div class="empty-shelf">
           Popular novels will appear here.
@@ -813,17 +894,26 @@ footer {
       </div>
     </section>
 
+    <!-- WRITERS' STUDIO PROMOTION -->
+
     <section class="writers" id="writers">
-      <div class="eyebrow">Your story starts here</div>
+
+      <div class="eyebrow">
+        Your story starts here
+      </div>
+
       <h2>Have a story to tell?</h2>
+
       <p>
         Bring your imagination to AHRUH.
         Writers' Studio will be the home for authors
         who want to prepare, submit and publish their work.
       </p>
-      <button class="primary-button">
+
+      <a href="#writers" class="button button-primary">
         Explore Writers' Studio
-      </button>
+      </a>
+
     </section>
 
   </main>
@@ -833,10 +923,14 @@ footer {
 
 <div class="modal" id="novelModal">
   <div class="dialog">
-    <button class="close" id="closeModal" aria-label="Close">×</button>
+
+    <button class="close" id="closeModal"
+      aria-label="Close">×</button>
 
     <div class="eyebrow">AHRUH NOVEL</div>
+
     <h2 id="detailTitle"></h2>
+
     <p id="detailDescription"></p>
 
     <p>How would you like to experience this story?</p>
@@ -861,167 +955,166 @@ footer {
   </div>
 </div>
 
+<!-- FOOTER -->
+
 <footer>
   <span>© 2026 AHRUH. All rights reserved.</span>
   <span>Read it. Hear it. Live it.</span>
 </footer>
 
 <script>
+
 /*
-  PUBLIC WEBSITE CONTENT
+  PUBLIC AHRUH WEBSITE
 
-  The billboard and novels will eventually be loaded
-  from the shared AHRUH content database.
+  This file contains no admin dashboard,
+  no admin login and no visitor upload controls.
 
-  No visitor-facing upload or administration controls
-  are included in this file.
+  Featured stories will eventually be loaded
+  from the shared AHRUH database.
 */
 
-let billboardItems = [];
-let currentSlide = 0;
-let slideTimer = null;
+/* MOBILE NAVIGATION */
 
-const slides = document.getElementById("slides");
-const dots = document.getElementById("slideDots");
-const emptyBillboard = document.getElementById("billboardEmpty");
+const navigation = document.getElementById("navigation");
 
-/* BUILD A BILLBOARD SLIDE */
+document.getElementById("menuButton").onclick = () => {
+  navigation.classList.toggle("open");
+};
 
-function createSlide(item) {
+navigation.querySelectorAll("a").forEach(link => {
+  link.addEventListener("click", () => {
+    navigation.classList.remove("open");
+  });
+});
+
+/* SEARCH */
+
+document.getElementById("searchButton").onclick = () => {
+  document.getElementById("searchPanel")
+    .classList.toggle("open");
+};
+
+/* FEATURED BILLBOARD */
+
+let featuredNovels = [];
+let currentFeatured = 0;
+let featuredTimer = null;
+
+const featuredTrack =
+  document.getElementById("featuredTrack");
+
+const featuredEmpty =
+  document.getElementById("featuredEmpty");
+
+const featuredControls =
+  document.getElementById("featuredControls");
+
+function createFeaturedSlide(novel) {
   const slide = document.createElement("article");
-  slide.className = "slide";
+  slide.className = "featured-slide";
 
   const image = document.createElement("img");
-  image.className = "slide-image";
-  image.src = item.cover;
-  image.alt = item.title;
+  image.src = novel.cover;
+  image.alt = novel.title;
 
   const content = document.createElement("div");
-  content.className = "slide-content";
 
-  const tag = document.createElement("div");
-  tag.className = "slide-tag";
-  tag.textContent = item.announcement || "Featured Novel";
+  const label = document.createElement("div");
+  label.className = "featured-label";
+  label.textContent = novel.announcement || "Coming Soon";
 
-  const title = document.createElement("h2");
-  title.textContent = item.title;
+  const title = document.createElement("h3");
+  title.textContent = novel.title;
 
   const description = document.createElement("p");
   description.textContent =
-    item.description || "Discover this story on AHRUH.";
+    novel.description || "Coming soon to AHRUH.";
 
-  const button = document.createElement("button");
-  button.className = "primary-button slide-button";
-  button.textContent = "Discover Story";
-  button.onclick = () => openNovel(item);
-
-  content.append(tag, title, description, button);
+  content.append(label, title, description);
   slide.append(image, content);
 
   return slide;
 }
 
-/* CHANGE SLIDE */
+function showFeatured(index) {
+  if (!featuredNovels.length) return;
 
-function showSlide(index) {
-  if (!billboardItems.length) return;
+  currentFeatured =
+    (index + featuredNovels.length) % featuredNovels.length;
 
-  currentSlide =
-    (index + billboardItems.length) % billboardItems.length;
+  featuredTrack.style.transform =
+    "translateX(-" + currentFeatured * 100 + "%)";
 
-  slides.style.transform =
-    "translateX(-" + currentSlide * 100 + "%)";
-
-  dots.querySelectorAll(".dot").forEach((dot, i) => {
-    dot.classList.toggle("active", i === currentSlide);
-  });
+  featuredControls.querySelectorAll(".featured-dot")
+    .forEach((dot, i) => {
+      dot.classList.toggle("active", i === currentFeatured);
+    });
 }
 
-/* AUTOMATIC BILLBOARD ROTATION */
+function startFeaturedRotation() {
+  clearInterval(featuredTimer);
 
-function startAutoSlide() {
-  clearInterval(slideTimer);
-
-  if (billboardItems.length > 1) {
-    slideTimer = setInterval(() => {
-      showSlide(currentSlide + 1);
+  if (featuredNovels.length > 1) {
+    featuredTimer = setInterval(() => {
+      showFeatured(currentFeatured + 1);
     }, 5000);
   }
 }
 
-/* DISPLAY BILLBOARD */
+function renderFeatured() {
+  featuredTrack.innerHTML = "";
+  featuredControls.innerHTML = "";
 
-function renderBillboard() {
-  slides.innerHTML = "";
-  dots.innerHTML = "";
-
-  if (!billboardItems.length) {
-    emptyBillboard.style.display = "flex";
-    slides.style.display = "none";
-
-    document.getElementById("previousSlide").style.display = "none";
-    document.getElementById("nextSlide").style.display = "none";
-
-    clearInterval(slideTimer);
+  if (!featuredNovels.length) {
+    featuredEmpty.style.display = "flex";
+    featuredTrack.style.display = "none";
+    clearInterval(featuredTimer);
     return;
   }
 
-  emptyBillboard.style.display = "none";
-  slides.style.display = "flex";
+  featuredEmpty.style.display = "none";
+  featuredTrack.style.display = "flex";
 
-  billboardItems.slice(0, 5).forEach((item, index) => {
-    slides.appendChild(createSlide(item));
+  featuredNovels.slice(0, 5).forEach((novel, index) => {
+    featuredTrack.appendChild(createFeaturedSlide(novel));
 
     const dot = document.createElement("button");
-    dot.className = "dot";
-    dot.setAttribute("aria-label", "Go to slide " + (index + 1));
+    dot.className = "featured-dot";
+    dot.setAttribute("aria-label", "Featured slide " + (index + 1));
 
     dot.onclick = () => {
-      showSlide(index);
-      startAutoSlide();
+      showFeatured(index);
+      startFeaturedRotation();
     };
 
-    dots.appendChild(dot);
+    featuredControls.appendChild(dot);
   });
 
-  const arrows =
-    billboardItems.length > 1 ? "block" : "none";
-
-  document.getElementById("previousSlide").style.display = arrows;
-  document.getElementById("nextSlide").style.display = arrows;
-
-  showSlide(0);
-  startAutoSlide();
+  showFeatured(0);
+  startFeaturedRotation();
 }
 
-document.getElementById("previousSlide").onclick = () => {
-  showSlide(currentSlide - 1);
-  startAutoSlide();
-};
+/* FEATURED BILLBOARD SWIPING */
 
-document.getElementById("nextSlide").onclick = () => {
-  showSlide(currentSlide + 1);
-  startAutoSlide();
-};
+let featuredTouchStart = 0;
 
-/* MOBILE SWIPING */
-
-let touchStartX = 0;
-
-document.getElementById("billboard")
+document.getElementById("featuredSlider")
   .addEventListener("touchstart", event => {
-    touchStartX = event.changedTouches[0].screenX;
+    featuredTouchStart = event.changedTouches[0].screenX;
   }, { passive: true });
 
-document.getElementById("billboard")
+document.getElementById("featuredSlider")
   .addEventListener("touchend", event => {
     const difference =
-      event.changedTouches[0].screenX - touchStartX;
+      event.changedTouches[0].screenX - featuredTouchStart;
 
     if (Math.abs(difference) > 45 &&
-        billboardItems.length > 1) {
-      showSlide(currentSlide + (difference < 0 ? 1 : -1));
-      startAutoSlide();
+        featuredNovels.length > 1) {
+      showFeatured(
+        currentFeatured + (difference < 0 ? 1 : -1)
+      );
+      startFeaturedRotation();
     }
   }, { passive: true });
 
@@ -1029,11 +1122,12 @@ document.getElementById("billboard")
 
 const modal = document.getElementById("novelModal");
 
-function openNovel(item) {
-  document.getElementById("detailTitle").textContent = item.title;
+function openNovel(novel) {
+  document.getElementById("detailTitle").textContent =
+    novel.title;
 
   document.getElementById("detailDescription").textContent =
-    item.description || "Discover this story on AHRUH.";
+    novel.description || "Discover this story on AHRUH.";
 
   modal.classList.add("open");
 }
@@ -1049,11 +1143,11 @@ modal.addEventListener("click", event => {
 });
 
 document.getElementById("readChoice").onclick = () => {
-  alert("The written novel reader will be connected in a later development stage.");
+  alert("The written novel reader will be connected in the next development stage.");
 };
 
 document.getElementById("listenChoice").onclick = () => {
-  alert("The cinematic audio player will be connected in a later development stage.");
+  alert("The cinematic audio player will be connected in the next development stage.");
 };
 
 document.addEventListener("keydown", event => {
@@ -1062,35 +1156,9 @@ document.addEventListener("keydown", event => {
   }
 });
 
-/* SEARCH PANEL */
+/* INITIAL DISPLAY */
 
-document.getElementById("searchButton").onclick = () => {
-  document.getElementById("searchPanel")
-    .classList.toggle("open");
-};
-
-/* MOBILE NAVIGATION */
-
-document.getElementById("menuButton").onclick = () => {
-  document.getElementById("navigation")
-    .classList.toggle("open");
-};
-
-document.querySelectorAll("#navigation a").forEach(link => {
-  link.addEventListener("click", () => {
-    document.getElementById("navigation")
-      .classList.remove("open");
-  });
-});
-
-/*
-  INITIAL DISPLAY
-
-  Billboard starts empty until the private admin system
-  is connected to the shared content database.
-*/
-
-renderBillboard();
+renderFeatured();
 
 </script>
 

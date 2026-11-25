@@ -4,8 +4,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#08080a">
-<meta name="description" content="AHRUH — Stories beyond the page.">
+<meta name="theme-color" content="#09090b">
+<meta name="description" content="AHRUH — Discover novels and experience stories beyond the page.">
 <title>AHRUH | Stories Beyond the Page</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,323 +14,696 @@
 
 <style>
 :root {
-  --bg:#08080a;
-  --panel:#17171c;
-  --red:#ff1738;
-  --red2:#d90028;
-  --white:#fff;
-  --muted:#aaaab3;
-  --line:#303037;
+  --bg: #09090b;
+  --panel: #17171c;
+  --red: #ff1738;
+  --red-dark: #c90025;
+  --white: #ffffff;
+  --muted: #aaaab3;
+  --line: #303037;
 }
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  margin:0;background:var(--bg);color:var(--white);
-  font-family:"Space Grotesk",Arial,sans-serif;
+
+* {
+  box-sizing: border-box;
 }
-button,input{font:inherit}
-button{cursor:pointer}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--white);
+  font-family: "Space Grotesk", Arial, sans-serif;
+}
+
+button, input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
 
 /* HEADER */
 
-header{
-  height:76px;padding:0 5%;display:flex;align-items:center;
-  justify-content:space-between;gap:20px;background:#0b0b0e;
-  border-bottom:1px solid var(--line);position:sticky;top:0;z-index:30;
+header {
+  min-height: 76px;
+  padding: 0 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 22px;
+  background: #0c0c0f;
+  border-bottom: 1px solid var(--line);
+  position: sticky;
+  top: 0;
+  z-index: 30;
 }
-.logo{
-  color:white;text-decoration:none;font-size:28px;
-  font-weight:700;letter-spacing:5px;
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 5px;
+  white-space: nowrap;
 }
-.logo span{color:var(--red)}
-nav{display:flex;align-items:center;gap:28px}
-nav a{color:#ddd;text-decoration:none;font-size:14px}
-nav a:hover{color:var(--red)}
-.header-actions{display:flex;align-items:center;gap:12px}
-.icon-button{
-  width:40px;height:40px;border:0;border-radius:50%;
-  display:grid;place-items:center;background:transparent;color:white;
+
+.logo span {
+  color: var(--red);
 }
-.icon-button:hover{background:#ffffff15}
-.icon-button svg{
-  width:23px;height:23px;fill:none;stroke:currentColor;
-  stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 30px;
 }
-.wallet{
-  padding:10px 12px;border:1px solid #45454e;
-  border-radius:8px;font-size:12px;white-space:nowrap;
+
+nav a {
+  color: #dedee3;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color .2s;
 }
-.wallet strong{color:#ffd166}
-.menu-button{display:none}
+
+nav a:hover,
+nav a.active {
+  color: var(--red);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.icon-button {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  color: white;
+  background: transparent;
+  border: 0;
+  border-radius: 50%;
+}
+
+.icon-button:hover {
+  background: #ffffff15;
+}
+
+.icon-button svg {
+  width: 23px;
+  height: 23px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.wallet {
+  padding: 10px 12px;
+  border: 1px solid #45454e;
+  border-radius: 8px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.wallet strong {
+  color: #ffd166;
+}
+
+.menu-button {
+  display: none;
+}
 
 /* SEARCH */
 
-.search-panel{
-  display:none;padding:14px 5%;background:#151519;
-  border-bottom:1px solid var(--line);
-}
-.search-panel.open{display:block}
-.search-panel input{
-  width:100%;padding:13px;color:white;background:#09090c;
-  border:1px solid #45454e;border-radius:7px;
+.search-panel {
+  display: none;
+  padding: 14px 5%;
+  background: #151519;
+  border-bottom: 1px solid var(--line);
 }
 
-/* HOMEPAGE BILLBOARD */
+.search-panel.open {
+  display: block;
+}
 
-.billboard{
-  position:relative;min-height:490px;overflow:hidden;
-  background:#180910;
+.search-panel input {
+  width: 100%;
+  padding: 13px 15px;
+  color: white;
+  background: #09090c;
+  border: 1px solid #45454e;
+  border-radius: 7px;
+  outline: none;
 }
-.slides{
-  display:flex;width:100%;height:490px;
-  transition:transform .65s ease;
-}
-.slide{
-  min-width:100%;height:100%;position:relative;
-  display:flex;align-items:center;overflow:hidden;
-  padding:55px 8%;
-  background:linear-gradient(90deg,#08080a 5%,#08080acc 48%,#08080a30);
-}
-.slide::before{
-  content:"";position:absolute;inset:0;
-  background:radial-gradient(ellipse at 78% 40%,#ff17385c,transparent 48%);
-  pointer-events:none;
-}
-.slide-image{
-  position:absolute;right:8%;top:7%;height:86%;width:34%;
-  object-fit:cover;object-position:center;
-  border-radius:9px;opacity:.78;
-  mask-image:linear-gradient(90deg,transparent,#000 20%);
-}
-.slide-content{
-  position:relative;z-index:2;max-width:590px;
-}
-.slide-tag{
-  display:inline-block;background:var(--red);color:white;
-  padding:7px 12px;border-radius:4px;
-  font-size:11px;font-weight:700;letter-spacing:2px;
-  text-transform:uppercase;
-}
-.slide h1{
-  font-size:clamp(40px,6vw,76px);line-height:1.02;
-  letter-spacing:-3px;margin:20px 0;
-}
-.slide p{
-  color:#e0d8dc;max-width:470px;line-height:1.8;font-size:15px;
-}
-.primary{
-  display:inline-block;background:var(--red);color:white;
-  border:0;border-radius:7px;padding:14px 22px;
-  font-weight:700;text-decoration:none;
-  box-shadow:0 5px 25px #ff17383b;
-}
-.primary:hover{background:#ff405b}
-.slide-button{margin-top:22px}
-.slide-dots{
-  position:absolute;z-index:5;bottom:20px;left:0;right:0;
-  display:flex;justify-content:center;gap:9px;
-}
-.dot{
-  width:9px;height:9px;padding:0;border:0;border-radius:20px;
-  background:#777;transition:all .2s;
-}
-.dot.active{width:28px;background:var(--red)}
-.slide-arrow{
-  position:absolute;z-index:5;top:50%;transform:translateY(-50%);
-  width:42px;height:42px;border-radius:50%;
-  color:white;background:#08080a99;border:1px solid #ffffff44;
-  font-size:22px;
-}
-.slide-arrow.prev{left:18px}
-.slide-arrow.next{right:18px}
 
-/* EMPTY BILLBOARD */
+.search-panel input:focus {
+  border-color: var(--red);
+}
 
-.billboard-empty{
-  height:490px;display:flex;align-items:center;justify-content:center;
-  text-align:center;padding:30px;
+/* TOP BILLBOARD */
+
+.billboard {
+  min-height: 490px;
+  position: relative;
+  overflow: hidden;
+  background: #180910;
+}
+
+.billboard-empty {
+  min-height: 490px;
+  display: flex;
+  align-items: center;
+  padding: 60px 8%;
   background:
-    radial-gradient(ellipse at 75% 45%,#ff17382c,transparent 45%),
-    linear-gradient(110deg,#09090c,#210811);
+    radial-gradient(ellipse at 78% 40%, #ff17385c, transparent 45%),
+    radial-gradient(ellipse at 55% 100%, #90002035, transparent 55%),
+    linear-gradient(110deg, #09090c, #200811);
 }
-.billboard-empty h1{
-  font-size:clamp(36px,6vw,65px);margin:14px 0;
+
+.billboard-empty-content {
+  max-width: 620px;
 }
-.billboard-empty p{color:#c5bdc2;line-height:1.7}
+
+.eyebrow {
+  color: #ff637a;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+.billboard-empty h1 {
+  font-size: clamp(43px, 6vw, 78px);
+  line-height: 1;
+  letter-spacing: -3px;
+  margin: 20px 0;
+}
+
+.billboard-empty h1 span {
+  color: var(--red);
+}
+
+.billboard-empty p {
+  max-width: 480px;
+  color: #d0cbd0;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+/* BILLBOARD SLIDES */
+
+.slides {
+  display: flex;
+  width: 100%;
+  height: 490px;
+  transition: transform .65s ease;
+}
+
+.slide {
+  min-width: 100%;
+  height: 100%;
+  padding: 55px 8%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: linear-gradient(90deg, #09090b 5%, #09090bcc 52%, #09090b55);
+}
+
+.slide::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at 78% 40%,
+    #ff17385c,
+    transparent 48%
+  );
+  pointer-events: none;
+}
+
+.slide-image {
+  position: absolute;
+  right: 7%;
+  top: 7%;
+  width: 36%;
+  height: 86%;
+  object-fit: cover;
+  border-radius: 9px;
+  opacity: .78;
+  mask-image: linear-gradient(90deg, transparent, black 20%);
+}
+
+.slide-content {
+  position: relative;
+  z-index: 2;
+  max-width: 590px;
+}
+
+.slide-tag {
+  display: inline-block;
+  padding: 7px 12px;
+  color: white;
+  background: var(--red);
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.slide h2 {
+  font-size: clamp(40px, 6vw, 72px);
+  line-height: 1.02;
+  letter-spacing: -3px;
+  margin: 20px 0;
+}
+
+.slide p {
+  max-width: 470px;
+  color: #e0d8dc;
+  line-height: 1.8;
+  font-size: 15px;
+}
+
+.primary-button {
+  display: inline-block;
+  padding: 14px 22px;
+  color: white;
+  background: var(--red);
+  border: 0;
+  border-radius: 7px;
+  font-weight: 700;
+  box-shadow: 0 5px 25px #ff17383b;
+}
+
+.primary-button:hover {
+  background: #ff405b;
+}
+
+.slide-button {
+  margin-top: 20px;
+}
+
+.slide-dots {
+  position: absolute;
+  z-index: 5;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 9px;
+}
+
+.dot {
+  width: 9px;
+  height: 9px;
+  padding: 0;
+  border: 0;
+  border-radius: 20px;
+  background: #777;
+}
+
+.dot.active {
+  width: 28px;
+  background: var(--red);
+}
+
+.slide-arrow {
+  position: absolute;
+  z-index: 5;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  color: white;
+  background: #08080a99;
+  border: 1px solid #ffffff44;
+  font-size: 22px;
+}
+
+.slide-arrow.prev {
+  left: 18px;
+}
+
+.slide-arrow.next {
+  right: 18px;
+}
 
 /* MAIN CONTENT */
 
-main{padding:0 5% 75px}
-.section{padding-top:46px}
-.section-heading{
-  display:flex;justify-content:space-between;align-items:center;
-  margin-bottom:20px;
+main {
+  padding: 0 5% 75px;
 }
-.section-heading h2{font-size:23px;margin:0}
-.section-heading span{color:#ff647a;font-size:12px}
-.shelf{
-  display:flex;gap:17px;overflow-x:auto;
-  min-height:145px;padding:3px 2px 15px;
-  scrollbar-color:#555 transparent;
-}
-.empty-shelf{
-  min-width:100%;min-height:135px;border:1px dashed #45454e;
-  border-radius:9px;display:flex;align-items:center;
-  justify-content:center;text-align:center;padding:20px;
-  color:#85858e;font-size:14px;
-}
-.novel-card{flex:0 0 175px;cursor:pointer}
-.novel-card img{
-  width:100%;aspect-ratio:3/4;object-fit:cover;
-  border-radius:8px;background:#1c1c22;
-}
-.novel-card h3{font-size:14px;margin:10px 0 4px}
-.novel-card p{font-size:12px;color:var(--muted);margin:0}
 
-/* WRITERS */
+.section {
+  padding-top: 46px;
+}
 
-.writers{
-  margin-top:55px;padding:40px;border-radius:11px;
-  border:1px solid #ff17384a;
-  background:radial-gradient(ellipse at 90% 20%,#ff17382b,transparent 50%),
-  linear-gradient(110deg,#290a14,#151216);
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
 }
-.eyebrow{
-  color:#ff6278;font-size:11px;font-weight:700;
-  letter-spacing:4px;text-transform:uppercase;
-}
-.writers h2{font-size:29px;margin:13px 0}
-.writers p{color:#d0c8ce;line-height:1.8;max-width:550px}
 
-/* ADMIN PAGE */
+.section-heading h2 {
+  font-size: 23px;
+  margin: 0;
+}
 
-.admin-page{display:none;min-height:85vh;padding:40px 5% 80px}
-.admin-page.active{display:block}
-.admin-top{
-  display:flex;align-items:center;justify-content:space-between;
-  flex-wrap:wrap;gap:15px;
+.section-heading span {
+  color: #ff647a;
+  font-size: 12px;
 }
-.admin-page h1{font-size:36px;margin:12px 0}
-.admin-panel{
-  max-width:900px;margin-top:28px;padding:28px;
-  background:var(--panel);border:1px solid var(--line);border-radius:12px;
+
+.shelf {
+  display: flex;
+  gap: 17px;
+  overflow-x: auto;
+  min-height: 145px;
+  padding: 3px 2px 15px;
+  scrollbar-color: #555 transparent;
 }
-.admin-panel h2{font-size:21px}
-.admin-panel p{color:var(--muted);font-size:13px;line-height:1.7}
-.form-group{margin:20px 0}
-.form-group label{
-  display:block;font-size:13px;font-weight:600;margin-bottom:9px;
+
+.empty-shelf {
+  min-width: 100%;
+  min-height: 135px;
+  border: 1px dashed #45454e;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+  color: #85858e;
+  font-size: 14px;
 }
-.form-group input,.form-group textarea{
-  width:100%;padding:13px;background:#09090c;
-  color:white;border:1px solid #45454e;border-radius:7px;
+
+.novel-card {
+  flex: 0 0 175px;
+  cursor: pointer;
 }
-.form-group textarea{min-height:90px;resize:vertical}
-.form-group input:focus,.form-group textarea:focus{
-  outline:1px solid var(--red);border-color:var(--red);
+
+.novel-card img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: 8px;
+  background: #1c1c22;
+  border: 1px solid #ffffff15;
 }
-.admin-count{color:#ff647a!important;font-weight:700}
-.admin-list{display:flex;gap:14px;overflow-x:auto;padding:15px 0}
-.admin-item{
-  flex:0 0 155px;background:#222228;padding:10px;border-radius:8px;
+
+.novel-card h3 {
+  font-size: 14px;
+  margin: 10px 0 4px;
 }
-.admin-item img{
-  width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:6px;
+
+.novel-card p {
+  font-size: 12px;
+  color: var(--muted);
+  margin: 0;
 }
-.admin-item p{overflow-wrap:anywhere}
-.remove-button{
-  background:transparent;color:#ff778a;border:1px solid #9b263b;
-  border-radius:5px;padding:7px 10px;font-size:11px;
+
+/* WRITERS STUDIO */
+
+.writers {
+  margin-top: 55px;
+  padding: 40px;
+  border-radius: 11px;
+  border: 1px solid #ff17384a;
+  background:
+    radial-gradient(ellipse at 90% 20%, #ff17382b, transparent 50%),
+    linear-gradient(110deg, #290a14, #151216);
 }
-.notice{font-size:12px;color:#999;line-height:1.7}
+
+.writers h2 {
+  font-size: 29px;
+  margin: 13px 0;
+}
+
+.writers p {
+  color: #d0c8ce;
+  line-height: 1.8;
+  max-width: 550px;
+}
 
 /* NOVEL DETAILS */
 
-.modal{
-  display:none;position:fixed;inset:0;z-index:60;
-  background:#000d;align-items:center;justify-content:center;padding:18px;
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  background: #000d;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
 }
-.modal.open{display:flex}
-.dialog{
-  width:100%;max-width:520px;padding:30px;position:relative;
-  background:#19191f;border:1px solid #ff17384a;border-radius:12px;
+
+.modal.open {
+  display: flex;
 }
-.close{
-  position:absolute;right:15px;top:12px;
-  background:transparent;border:0;color:white;font-size:27px;
+
+.dialog {
+  width: 100%;
+  max-width: 520px;
+  padding: 30px;
+  position: relative;
+  background: #19191f;
+  border: 1px solid #ff17384a;
+  border-radius: 12px;
+  box-shadow: 0 20px 90px #000;
 }
-.dialog h2{font-size:29px;margin:14px 0 8px}
-.dialog p{color:#c3c0c8;line-height:1.7}
-.choices{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-top:22px}
-.choice{
-  padding:20px;text-align:left;color:white;background:#25252c;
-  border:1px solid #45454e;border-radius:8px;
+
+.close {
+  position: absolute;
+  right: 15px;
+  top: 12px;
+  background: transparent;
+  border: 0;
+  color: white;
+  font-size: 27px;
 }
-.choice:hover{border-color:var(--red);background:#35101a}
-.choice strong{display:block;font-size:16px;margin-bottom:8px}
-.choice span{font-size:12px;color:#aaa;line-height:1.6}
+
+.dialog h2 {
+  font-size: 29px;
+  margin: 14px 0 8px;
+}
+
+.dialog p {
+  color: #c3c0c8;
+  line-height: 1.7;
+}
+
+.choices {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 13px;
+  margin-top: 22px;
+}
+
+.choice {
+  padding: 20px;
+  text-align: left;
+  color: white;
+  background: #25252c;
+  border: 1px solid #45454e;
+  border-radius: 8px;
+}
+
+.choice:hover {
+  border-color: var(--red);
+  background: #35101a;
+}
+
+.choice strong {
+  display: block;
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.choice span {
+  font-size: 12px;
+  color: #aaa;
+  line-height: 1.6;
+}
 
 /* FOOTER */
 
-footer{
-  padding:25px 5%;border-top:1px solid var(--line);
-  color:#85858c;font-size:12px;
-  display:flex;justify-content:space-between;gap:15px;
+footer {
+  padding: 25px 5%;
+  border-top: 1px solid var(--line);
+  color: #85858c;
+  font-size: 12px;
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
 }
 
 /* MOBILE */
 
-@media(max-width:850px){
-  header{padding:0 4%}
-  nav{
-    display:none;position:absolute;top:76px;left:0;right:0;
-    padding:22px;background:#111115;border-bottom:1px solid var(--line);
-    flex-direction:column;align-items:flex-start;gap:22px;
+@media(max-width: 850px) {
+  header {
+    padding: 0 4%;
   }
-  nav.open{display:flex}
-  .menu-button{display:grid}
-  .billboard,.slides,.billboard-empty{min-height:460px;height:460px}
-  .slide{padding:45px 8%}
-  .slide-image{right:3%;width:42%;opacity:.35}
-  .slide-content{max-width:90%}
-  .novel-card{flex-basis:42vw}
-  .writers{padding:27px}
+
+  nav {
+    display: none;
+    position: absolute;
+    top: 76px;
+    left: 0;
+    right: 0;
+    padding: 22px;
+    background: #111115;
+    border-bottom: 1px solid var(--line);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 22px;
+  }
+
+  nav.open {
+    display: flex;
+  }
+
+  .menu-button {
+    display: grid;
+  }
+
+  .billboard,
+  .billboard-empty {
+    min-height: 460px;
+  }
+
+  .slides {
+    height: 460px;
+  }
+
+  .slide {
+    padding: 45px 8%;
+  }
+
+  .slide-image {
+    right: 3%;
+    width: 42%;
+    opacity: .35;
+  }
+
+  .slide-content {
+    max-width: 90%;
+  }
+
+  .novel-card {
+    flex-basis: 42vw;
+  }
+
+  .writers {
+    padding: 27px;
+  }
 }
-@media(max-width:480px){
-  .logo{font-size:23px;letter-spacing:3px}
-  header{gap:5px}
-  .header-actions{gap:2px}
-  .icon-button{width:34px}
-  .wallet{display:none}
-  .slide h1{font-size:44px;letter-spacing:-2px}
-  .slide p{font-size:13px;max-width:300px}
-  .slide-image{width:50%;right:-10%;opacity:.24}
-  .slide-arrow{width:34px;height:34px}
-  .slide-arrow.prev{left:7px}
-  .slide-arrow.next{right:7px}
-  .choices{grid-template-columns:1fr}
-  .admin-panel{padding:18px}
-  footer{flex-direction:column}
+
+@media(max-width: 480px) {
+  .logo {
+    font-size: 23px;
+    letter-spacing: 3px;
+  }
+
+  header {
+    gap: 5px;
+  }
+
+  .header-actions {
+    gap: 2px;
+  }
+
+  .icon-button {
+    width: 34px;
+  }
+
+  .wallet {
+    display: none;
+  }
+
+  .billboard-empty h1 {
+    font-size: 45px;
+  }
+
+  .slide h2 {
+    font-size: 43px;
+    letter-spacing: -2px;
+  }
+
+  .slide p {
+    font-size: 13px;
+    max-width: 300px;
+  }
+
+  .slide-image {
+    width: 50%;
+    right: -10%;
+    opacity: .24;
+  }
+
+  .slide-arrow {
+    width: 34px;
+    height: 34px;
+  }
+
+  .slide-arrow.prev {
+    left: 7px;
+  }
+
+  .slide-arrow.next {
+    right: 7px;
+  }
+
+  .choices {
+    grid-template-columns: 1fr;
+  }
+
+  .section-heading h2 {
+    font-size: 19px;
+  }
+
+  footer {
+    flex-direction: column;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<header>
-  <a href="#" class="logo" id="homeLogo">AHR<span>U</span>H</a>
+<!-- PUBLIC HEADER: NO ADMIN CONTROLS -->
 
-  <button class="icon-button menu-button" id="menuButton" aria-label="Menu">
-    <svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+<header>
+  <a href="#home" class="logo">AHR<span>U</span>H</a>
+
+  <button class="icon-button menu-button" id="menuButton"
+    aria-label="Open navigation">
+    <svg viewBox="0 0 24 24">
+      <path d="M4 6h16M4 12h16M4 18h16"/>
+    </svg>
   </button>
 
   <nav id="navigation">
-    <a href="#home" data-home>Home</a>
-    <a href="#novels" data-home>Novels</a>
-    <a href="#writers" data-home>Writers' Studio</a>
+    <a href="#home" class="active">Home</a>
+    <a href="#novels">Novels</a>
+    <a href="#writers">Writers' Studio</a>
   </nav>
 
   <div class="header-actions">
+
     <button class="icon-button" id="searchButton" aria-label="Search">
       <svg viewBox="0 0 24 24">
         <circle cx="10.8" cy="10.8" r="6.8"/>
@@ -356,22 +729,29 @@ footer{
   </div>
 </header>
 
+<!-- SEARCH -->
+
 <div class="search-panel" id="searchPanel">
-  <input type="search" id="searchInput" placeholder="Search novels...">
+  <input type="search" id="searchInput"
+    placeholder="Search novels and authors...">
 </div>
 
 <!-- PUBLIC HOMEPAGE -->
 
-<div id="homePage">
+<div id="home">
 
-  <!-- BILLBOARD IS THE FIRST THING UNDER THE HEADER -->
+  <!-- THE BILLBOARD IS IMMEDIATELY BELOW THE HEADER -->
 
   <section class="billboard" id="billboard">
+
     <div class="billboard-empty" id="billboardEmpty">
-      <div>
+      <div class="billboard-empty-content">
         <div class="eyebrow">Stories beyond the page</div>
-        <h1>Discover your<br>next favourite story.</h1>
-        <p>Featured novels and coming-soon releases will appear here.</p>
+        <h1>Every story has <span>another life.</span></h1>
+        <p>
+          Discover unforgettable novels.
+          Your next favourite story is waiting to be discovered.
+        </p>
       </div>
     </div>
 
@@ -379,6 +759,7 @@ footer{
 
     <button class="slide-arrow prev" id="previousSlide"
       aria-label="Previous slide" style="display:none">‹</button>
+
     <button class="slide-arrow next" id="nextSlide"
       aria-label="Next slide" style="display:none">›</button>
 
@@ -393,7 +774,9 @@ footer{
         <span>EXPLORE</span>
       </div>
       <div class="shelf" id="trendingShelf">
-        <div class="empty-shelf">Trending novels will appear here.</div>
+        <div class="empty-shelf">
+          Novels will appear here when they are published.
+        </div>
       </div>
     </section>
 
@@ -402,7 +785,9 @@ footer{
         <h2>New Releases</h2>
       </div>
       <div class="shelf" id="newShelf">
-        <div class="empty-shelf">New releases will appear here.</div>
+        <div class="empty-shelf">
+          New releases will appear here.
+        </div>
       </div>
     </section>
 
@@ -411,7 +796,9 @@ footer{
         <h2>AHRUH Originals</h2>
       </div>
       <div class="shelf" id="originalShelf">
-        <div class="empty-shelf">AHRUH Originals will appear here.</div>
+        <div class="empty-shelf">
+          AHRUH Originals will appear here.
+        </div>
       </div>
     </section>
 
@@ -420,7 +807,9 @@ footer{
         <h2>Popular Novels</h2>
       </div>
       <div class="shelf" id="popularShelf">
-        <div class="empty-shelf">Popular novels will appear here.</div>
+        <div class="empty-shelf">
+          Popular novels will appear here.
+        </div>
       </div>
     </section>
 
@@ -432,90 +821,42 @@ footer{
         Writers' Studio will be the home for authors
         who want to prepare, submit and publish their work.
       </p>
-      <button class="primary">Explore Writers' Studio</button>
+      <button class="primary-button">
+        Explore Writers' Studio
+      </button>
     </section>
 
   </main>
 </div>
 
-<!-- SEPARATE ADMIN PAGE: OPEN WITH ?admin=1 -->
-
-<section class="admin-page" id="adminPage">
-  <div class="admin-top">
-    <div>
-      <div class="eyebrow">AHRUH CONTENT MANAGEMENT</div>
-      <h1>Billboard Manager</h1>
-      <p class="notice">
-        Add, change or remove the novels displayed in the homepage billboard.
-      </p>
-    </div>
-    <button class="primary" id="returnHome">View Homepage</button>
-  </div>
-
-  <div class="admin-panel">
-    <h2>Add a Billboard Slide</h2>
-    <p>Upload up to five featured novels or upcoming releases.</p>
-
-    <form id="billboardForm">
-
-      <div class="form-group">
-        <label for="slideTitle">Novel title</label>
-        <input id="slideTitle" required placeholder="Enter novel title">
-      </div>
-
-      <div class="form-group">
-        <label for="slideAnnouncement">Announcement</label>
-        <input id="slideAnnouncement" placeholder="For example: Coming Soon">
-      </div>
-
-      <div class="form-group">
-        <label for="slideDescription">Short description</label>
-        <textarea id="slideDescription" placeholder="Write a short introduction to the novel"></textarea>
-      </div>
-
-      <div class="form-group">
-        <label for="slideCover">Upload novel cover or billboard artwork</label>
-        <input id="slideCover" type="file" accept="image/*" required>
-      </div>
-
-      <button class="primary" type="submit">+ Add to Billboard</button>
-    </form>
-
-    <p class="admin-count" id="slideCount">0 of 5 slides added</p>
-
-    <h2>Your Billboard Slides</h2>
-    <div class="admin-list" id="adminList">
-      <div class="empty-shelf">You haven't added any slides yet.</div>
-    </div>
-
-    <p class="notice">
-      Prototype limitation: slides are stored in this browser only.
-      A secure administrator login and permanent shared online image
-      storage must be connected before this can be used as a live admin system.
-    </p>
-  </div>
-</section>
-
-<!-- NOVEL DETAILS -->
+<!-- NOVEL DETAILS: READ OR LISTEN -->
 
 <div class="modal" id="novelModal">
   <div class="dialog">
     <button class="close" id="closeModal" aria-label="Close">×</button>
+
     <div class="eyebrow">AHRUH NOVEL</div>
     <h2 id="detailTitle"></h2>
     <p id="detailDescription"></p>
+
     <p>How would you like to experience this story?</p>
 
     <div class="choices">
+
       <button class="choice" id="readChoice">
         <strong>▤ Read</strong>
-        <span>Enjoy the written novel chapter by chapter.</span>
+        <span>
+          Enjoy the written novel chapter by chapter.
+        </span>
       </button>
 
       <button class="choice" id="listenChoice">
         <strong>♫ Listen</strong>
-        <span>Experience the same story as cinematic audio drama.</span>
+        <span>
+          Experience the same story as cinematic audio drama.
+        </span>
       </button>
+
     </div>
   </div>
 </div>
@@ -526,68 +867,17 @@ footer{
 </footer>
 
 <script>
-/* PAGE SELECTION */
+/*
+  PUBLIC WEBSITE CONTENT
 
-const homePage = document.getElementById("homePage");
-const adminPage = document.getElementById("adminPage");
+  The billboard and novels will eventually be loaded
+  from the shared AHRUH content database.
 
-function showHome() {
-  homePage.style.display = "block";
-  adminPage.classList.remove("active");
-  window.scrollTo(0,0);
-}
+  No visitor-facing upload or administration controls
+  are included in this file.
+*/
 
-function showAdmin() {
-  homePage.style.display = "none";
-  adminPage.classList.add("active");
-  window.scrollTo(0,0);
-}
-
-document.getElementById("returnHome").onclick = () => {
-  history.replaceState(null,"",location.pathname);
-  showHome();
-};
-
-document.getElementById("homeLogo").onclick = event => {
-  event.preventDefault();
-  history.replaceState(null,"",location.pathname);
-  showHome();
-};
-
-if (new URLSearchParams(location.search).get("admin") === "1") {
-  showAdmin();
-}
-
-/* MOBILE MENU */
-
-const navigation = document.getElementById("navigation");
-
-document.getElementById("menuButton").onclick = () => {
-  navigation.classList.toggle("open");
-};
-
-navigation.querySelectorAll("a").forEach(link => {
-  link.onclick = () => navigation.classList.remove("open");
-});
-
-/* SEARCH */
-
-document.getElementById("searchButton").onclick = () => {
-  document.getElementById("searchPanel").classList.toggle("open");
-};
-
-/* BILLBOARD DATA */
-
-const STORAGE_KEY = "ahruh_billboard_v1";
 let billboardItems = [];
-
-try {
-  billboardItems = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
-  if (!Array.isArray(billboardItems)) billboardItems = [];
-} catch {
-  billboardItems = [];
-}
-
 let currentSlide = 0;
 let slideTimer = null;
 
@@ -595,15 +885,9 @@ const slides = document.getElementById("slides");
 const dots = document.getElementById("slideDots");
 const emptyBillboard = document.getElementById("billboardEmpty");
 
-function saveBillboard() {
-  try {
-    localStorage.setItem(STORAGE_KEY,JSON.stringify(billboardItems));
-  } catch {
-    alert("Browser storage is full. Please use smaller images.");
-  }
-}
+/* BUILD A BILLBOARD SLIDE */
 
-function makeSlide(item) {
+function createSlide(item) {
   const slide = document.createElement("article");
   slide.className = "slide";
 
@@ -619,32 +903,41 @@ function makeSlide(item) {
   tag.className = "slide-tag";
   tag.textContent = item.announcement || "Featured Novel";
 
-  const title = document.createElement("h1");
+  const title = document.createElement("h2");
   title.textContent = item.title;
 
   const description = document.createElement("p");
-  description.textContent = item.description || "Discover this story on AHRUH.";
+  description.textContent =
+    item.description || "Discover this story on AHRUH.";
 
   const button = document.createElement("button");
-  button.className = "primary slide-button";
+  button.className = "primary-button slide-button";
   button.textContent = "Discover Story";
-  button.onclick = () => openDetails(item);
+  button.onclick = () => openNovel(item);
 
-  content.append(tag,title,description,button);
-  slide.append(image,content);
+  content.append(tag, title, description, button);
+  slide.append(image, content);
+
   return slide;
 }
+
+/* CHANGE SLIDE */
 
 function showSlide(index) {
   if (!billboardItems.length) return;
 
-  currentSlide = (index + billboardItems.length) % billboardItems.length;
-  slides.style.transform = "translateX(-" + (currentSlide * 100) + "%)";
+  currentSlide =
+    (index + billboardItems.length) % billboardItems.length;
 
-  dots.querySelectorAll(".dot").forEach((dot,i) => {
-    dot.classList.toggle("active",i === currentSlide);
+  slides.style.transform =
+    "translateX(-" + currentSlide * 100 + "%)";
+
+  dots.querySelectorAll(".dot").forEach((dot, i) => {
+    dot.classList.toggle("active", i === currentSlide);
   });
 }
+
+/* AUTOMATIC BILLBOARD ROTATION */
 
 function startAutoSlide() {
   clearInterval(slideTimer);
@@ -652,9 +945,11 @@ function startAutoSlide() {
   if (billboardItems.length > 1) {
     slideTimer = setInterval(() => {
       showSlide(currentSlide + 1);
-    },5000);
+    }, 5000);
   }
 }
+
+/* DISPLAY BILLBOARD */
 
 function renderBillboard() {
   slides.innerHTML = "";
@@ -663,8 +958,10 @@ function renderBillboard() {
   if (!billboardItems.length) {
     emptyBillboard.style.display = "flex";
     slides.style.display = "none";
+
     document.getElementById("previousSlide").style.display = "none";
     document.getElementById("nextSlide").style.display = "none";
+
     clearInterval(slideTimer);
     return;
   }
@@ -672,22 +969,26 @@ function renderBillboard() {
   emptyBillboard.style.display = "none";
   slides.style.display = "flex";
 
-  billboardItems.forEach((item,index) => {
-    slides.appendChild(makeSlide(item));
+  billboardItems.slice(0, 5).forEach((item, index) => {
+    slides.appendChild(createSlide(item));
 
     const dot = document.createElement("button");
     dot.className = "dot";
-    dot.setAttribute("aria-label","Go to slide " + (index + 1));
+    dot.setAttribute("aria-label", "Go to slide " + (index + 1));
+
     dot.onclick = () => {
       showSlide(index);
       startAutoSlide();
     };
+
     dots.appendChild(dot);
   });
 
-  const arrowsVisible = billboardItems.length > 1 ? "block" : "none";
-  document.getElementById("previousSlide").style.display = arrowsVisible;
-  document.getElementById("nextSlide").style.display = arrowsVisible;
+  const arrows =
+    billboardItems.length > 1 ? "block" : "none";
+
+  document.getElementById("previousSlide").style.display = arrows;
+  document.getElementById("nextSlide").style.display = arrows;
 
   showSlide(0);
   startAutoSlide();
@@ -703,120 +1004,34 @@ document.getElementById("nextSlide").onclick = () => {
   startAutoSlide();
 };
 
-/* SWIPE SUPPORT */
+/* MOBILE SWIPING */
 
 let touchStartX = 0;
 
-document.getElementById("billboard").addEventListener("touchstart",event => {
-  touchStartX = event.changedTouches[0].screenX;
-},{passive:true});
+document.getElementById("billboard")
+  .addEventListener("touchstart", event => {
+    touchStartX = event.changedTouches[0].screenX;
+  }, { passive: true });
 
-document.getElementById("billboard").addEventListener("touchend",event => {
-  const difference = event.changedTouches[0].screenX - touchStartX;
+document.getElementById("billboard")
+  .addEventListener("touchend", event => {
+    const difference =
+      event.changedTouches[0].screenX - touchStartX;
 
-  if (Math.abs(difference) > 45 && billboardItems.length > 1) {
-    showSlide(currentSlide + (difference < 0 ? 1 : -1));
-    startAutoSlide();
-  }
-},{passive:true});
-
-/* ADMIN UPLOADS */
-
-const adminList = document.getElementById("adminList");
-const slideCount = document.getElementById("slideCount");
-
-function renderAdminList() {
-  adminList.innerHTML = "";
-
-  if (!billboardItems.length) {
-    adminList.innerHTML =
-      '<div class="empty-shelf">You haven’t added any billboard slides.</div>';
-  }
-
-  billboardItems.forEach((item,index) => {
-    const card = document.createElement("div");
-    card.className = "admin-item";
-
-    const image = document.createElement("img");
-    image.src = item.cover;
-    image.alt = item.title;
-
-    const title = document.createElement("p");
-    title.textContent = item.title;
-
-    const announcement = document.createElement("p");
-    announcement.textContent = item.announcement || "Featured Novel";
-
-    const remove = document.createElement("button");
-    remove.className = "remove-button";
-    remove.textContent = "Remove";
-    remove.onclick = () => {
-      billboardItems.splice(index,1);
-      saveBillboard();
-      renderAdminList();
-      renderBillboard();
-    };
-
-    card.append(image,title,announcement,remove);
-    adminList.appendChild(card);
-  });
-
-  slideCount.textContent = billboardItems.length + " of 5 slides added";
-}
-
-document.getElementById("billboardForm").onsubmit = event => {
-  event.preventDefault();
-
-  if (billboardItems.length >= 5) {
-    alert("You can add a maximum of five billboard slides.");
-    return;
-  }
-
-  const title = document.getElementById("slideTitle").value.trim();
-  const announcement = document.getElementById("slideAnnouncement").value.trim();
-  const description = document.getElementById("slideDescription").value.trim();
-  const file = document.getElementById("slideCover").files[0];
-
-  if (!title || !file) {
-    alert("Please enter a title and select an image.");
-    return;
-  }
-
-  if (!file.type.startsWith("image/")) {
-    alert("Please select an image file.");
-    return;
-  }
-
-  if (file.size > 2 * 1024 * 1024) {
-    alert("Please use an image smaller than 2MB for this preview.");
-    return;
-  }
-
-  const reader = new FileReader();
-
-  reader.onload = () => {
-    billboardItems.push({
-      title,
-      announcement,
-      description,
-      cover: reader.result
-    });
-
-    saveBillboard();
-    renderAdminList();
-    renderBillboard();
-    event.target.reset();
-  };
-
-  reader.readAsDataURL(file);
-};
+    if (Math.abs(difference) > 45 &&
+        billboardItems.length > 1) {
+      showSlide(currentSlide + (difference < 0 ? 1 : -1));
+      startAutoSlide();
+    }
+  }, { passive: true });
 
 /* NOVEL DETAILS */
 
 const modal = document.getElementById("novelModal");
 
-function openDetails(item) {
+function openNovel(item) {
   document.getElementById("detailTitle").textContent = item.title;
+
   document.getElementById("detailDescription").textContent =
     item.description || "Discover this story on AHRUH.";
 
@@ -827,26 +1042,56 @@ document.getElementById("closeModal").onclick = () => {
   modal.classList.remove("open");
 };
 
-modal.onclick = event => {
-  if (event.target === modal) modal.classList.remove("open");
-};
+modal.addEventListener("click", event => {
+  if (event.target === modal) {
+    modal.classList.remove("open");
+  }
+});
 
 document.getElementById("readChoice").onclick = () => {
-  alert("The written reading experience will be connected in a later stage.");
+  alert("The written novel reader will be connected in a later development stage.");
 };
 
 document.getElementById("listenChoice").onclick = () => {
-  alert("The cinematic audio experience will be connected in a later stage.");
+  alert("The cinematic audio player will be connected in a later development stage.");
 };
 
-document.addEventListener("keydown",event => {
-  if (event.key === "Escape") modal.classList.remove("open");
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape") {
+    modal.classList.remove("open");
+  }
 });
 
-/* INITIAL DISPLAY */
+/* SEARCH PANEL */
+
+document.getElementById("searchButton").onclick = () => {
+  document.getElementById("searchPanel")
+    .classList.toggle("open");
+};
+
+/* MOBILE NAVIGATION */
+
+document.getElementById("menuButton").onclick = () => {
+  document.getElementById("navigation")
+    .classList.toggle("open");
+};
+
+document.querySelectorAll("#navigation a").forEach(link => {
+  link.addEventListener("click", () => {
+    document.getElementById("navigation")
+      .classList.remove("open");
+  });
+});
+
+/*
+  INITIAL DISPLAY
+
+  Billboard starts empty until the private admin system
+  is connected to the shared content database.
+*/
 
 renderBillboard();
-renderAdminList();
+
 </script>
 
 </body>
